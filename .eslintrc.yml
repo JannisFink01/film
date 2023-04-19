@@ -444,7 +444,8 @@ rules:
   keyword-spacing: error
   # wegen //NOSONAR
   #line-comment-position: error
-  linebreak-style: error
+  linebreak-style: ["error", "unix"]
+  no-mixed-spaces-and-tabs": "error"
   logical-assignment-operators: error
   max-classes-per-file: error
   max-depth: error
@@ -479,7 +480,7 @@ rules:
   no-confusing-arrow:
     - error
     - allowParens: false
-  no-console: 0
+  no-console: "off"
   no-constant-binary-expression: error
   no-constructor-return: error
   no-continue: error
