@@ -6,7 +6,6 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm';
 
-
 @Entity()
 export class Titel {
     @Column('int')

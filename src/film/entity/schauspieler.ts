@@ -16,5 +16,3 @@ export class Schauspieler {
     @Column('varchar', { unique: true, length: 32 })
     readonly beschriftung!: string;
 }
-
-

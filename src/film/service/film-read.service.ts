@@ -1,26 +1,8 @@
-/*
- * Copyright (C) 2016 - present Juergen Zimmermann, Hochschule Karlsruhe
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 /**
- * Das Modul besteht aus der Klasse {@linkcode BuchReadService}.
+ * Das Modul besteht aus der Klasse {@linkcode FilmReadService}.
  * @packageDocumentation
  */
 
-import { Film } from './../entity/film.js';
 import { Injectable } from '@nestjs/common';
 import { QueryBuilder } from './query-builder.js';
 import RE2 from 're2';
@@ -28,9 +10,9 @@ import { getLogger } from '../../logger/logger.js';
 
 /**
  * Typdefinition für `findById`
- */
+ */ s;
 export interface FindByIdParams {
-    /** ID des gesuchten Buchs */
+    /** ID des gesuchten Films */
     id: number;
     /** Sollen die Abbildungen mitgeladen werden? */
     mitAbbildungen?: boolean;
@@ -38,7 +20,6 @@ export interface FindByIdParams {
 export interface Suchkriterien {
     readonly isbn?: string;
     readonly rating?: number;
-    readonly art?: BuchArt;
     readonly preis?: number;
     readonly rabatt?: number;
     readonly lieferbar?: boolean;
@@ -50,22 +31,22 @@ export interface Suchkriterien {
 }
 
 /**
- * Die Klasse `BuchReadService` implementiert das Lesen für Bücher und greift
+ * Die Klasse `FilmReadService` implementiert das Lesen für Filme und greift
  * mit _TypeORM_ auf eine relationale DB zu.
  */
 @Injectable()
-export class BuchReadService {
+export class FilmReadService {
     static readonly ID_PATTERN = new RE2('^[1-9][\\d]*$');
 
-    readonly #buchProps: string[];
+    readonly #filmProps: string[];
 
     readonly #queryBuilder: QueryBuilder;
 
-    readonly #logger = getLogger(BuchReadService.name);
+    readonly #logger = getLogger(FilmReadService.name);
 
     constructor(queryBuilder: QueryBuilder) {
-        const buchDummy = new Buch();
-        this.#buchProps = Object.getOwnPropertyNames(buchDummy);
+        const filmDummy = new Film();
+        this.#filmProps = Object.getOwnPropertyNames(filmDummy);
         this.#queryBuilder = queryBuilder;
     }
 
@@ -82,9 +63,9 @@ export class BuchReadService {
     //              Im Promise-Objekt ist dann die Fehlerursache enthalten.
 
     /**
-     * Ein Buch asynchron anhand seiner ID suchen
-     * @param id ID des gesuchten Buches
-     * @returns Das gefundene Buch vom Typ [Buch](buch_entity_buch_entity.Buch.html) oder undefined
+     * Ein Film asynchron anhand seiner ID suchen
+     * @param id ID des gesuchten Filmes
+     * @returns Das gefundene Film vom Typ [Film](film_entity_film_entity.Film.html) oder undefined
      *          in einem Promise aus ES2015 (vgl.: Mono aus Project Reactor oder
      *          Future aus Java)
      */
@@ -95,37 +76,37 @@ export class BuchReadService {
         // https://typeorm.io/working-with-repository
         // Das Resultat ist undefined, falls kein Datensatz gefunden
         // Lesen: Keine Transaktion erforderlich
-        const buch = await this.#queryBuilder
+        const film = await this.#queryBuilder
             .buildId({ id, mitAbbildungen })
             .getOne();
-        if (buch === null) {
-            this.#logger.debug('findById: Kein Buch gefunden');
+        if (film === null) {
+            this.#logger.debug('findById: Kein Film gefunden');
             return;
         }
 
-        this.#logger.debug('findById: buch=%o', buch);
-        return buch;
+        this.#logger.debug('findById: film=%o', film);
+        return film;
     }
 
     /**
-     * Bücher asynchron suchen.
+     * Filme asynchron suchen.
      * @param suchkriterien JSON-Objekt mit Suchkriterien
-     * @returns Ein JSON-Array mit den gefundenen Büchern. Ggf. ist das Array leer.
+     * @returns Ein JSON-Array mit den gefundenen Filmen. Ggf. ist das Array leer.
      */
     async find(suchkriterien?: Suchkriterien) {
         this.#logger.debug('find: suchkriterien=%o', suchkriterien);
 
         // Keine Suchkriterien?
         if (suchkriterien === undefined) {
-            const buecher = await this.#queryBuilder.build({}).getMany();
-            return buecher;
+            const filme = await this.#queryBuilder.build({}).getMany();
+            return filme;
         }
         const keys = Object.keys(suchkriterien);
         if (keys.length === 0) {
-            const buecher = await this.#queryBuilder
+            const filme = await this.#queryBuilder
                 .build(suchkriterien)
                 .getMany();
-            return buecher;
+            return filme;
         }
 
         // Falsche Namen fuer Suchkriterien?
@@ -136,18 +117,18 @@ export class BuchReadService {
         // QueryBuilder https://typeorm.io/select-query-builder
         // Das Resultat ist eine leere Liste, falls nichts gefunden
         // Lesen: Keine Transaktion erforderlich
-        const buecher = await this.#queryBuilder.build(suchkriterien).getMany();
-        this.#logger.debug('find: buecher=%o', buecher);
+        const filme = await this.#queryBuilder.build(suchkriterien).getMany();
+        this.#logger.debug('find: filme=%o', filme);
 
-        return buecher;
+        return filme;
     }
 
     #checkKeys(keys: string[]) {
-        // Ist jedes Suchkriterium auch eine Property von Buch oder "schlagwoerter"?
+        // Ist jedes Suchkriterium auch eine Property von Film oder "schlagwoerter"?
         let validKeys = true;
         keys.forEach((key) => {
             if (
-                !this.#buchProps.includes(key) &&
+                !this.#filmProps.includes(key) &&
                 key !== 'javascript' &&
                 key !== 'typescript'
             ) {

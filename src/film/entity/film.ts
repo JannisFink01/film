@@ -33,7 +33,6 @@ export class Film {
     @ApiProperty({ example: 1, type: Number })
     readonly preis!: number;
 
-
     @Column('boolean')
     @ApiProperty({ example: true, type: Boolean })
     readonly ausleihbar: boolean | undefined;
@@ -49,5 +48,4 @@ export class Film {
         cascade: ['insert', 'remove'],
     })
     readonly titel: Titel | undefined;
-
 }
