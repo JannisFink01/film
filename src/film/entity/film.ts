@@ -10,6 +10,10 @@ import {
 } from 'typeorm';
 import { Titel } from './titel.js';
 
+<<<<<<< HEAD
+=======
+@Entity()
+>>>>>>> 3387ae2dff1c2965ebd22f6c23d75e2ad3ab1d7a
 export class Film {
     @PrimaryGeneratedColumn()
     id: number | undefined;
