@@ -8,15 +8,30 @@ import {
     UpdateDateColumn,
     VersionColumn,
 } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
+import { DecimalTransformer } from './decimal-transformer.js';
+import { Schauspieler } from './schauspieler.js';
 import { Titel } from './titel.js';
+import { dbType } from '../../config/dbtype.js';
 
-<<<<<<< HEAD
-=======
 @Entity()
->>>>>>> 3387ae2dff1c2965ebd22f6c23d75e2ad3ab1d7a
 export class Film {
     @PrimaryGeneratedColumn()
     id: number | undefined;
+
+    @OneToOne(() => Titel, (titel) => titel.film, {
+        cascade: ['insert', 'remove'],
+    })
+    readonly titel: Titel | undefined;
+
+    @Column('varchar', { length: 40 })
+    @ApiProperty({ example: 'Sam Raimi', type: String })
+    readonly regisseur!: string;
+
+    @OneToMany(() => Schauspieler, (schauspieler) => schauspieler.film, {
+        cascade: ['insert', 'remove'],
+    })
+    readonly schauspieler: Schauspieler[] | undefined;
 
     @VersionColumn()
     readonly version: number | undefined;
@@ -24,10 +39,6 @@ export class Film {
     @Column('int')
     @ApiProperty({ example: 5, type: Number })
     readonly bewertung: number | undefined;
-
-    @Column('varchar', { length: 12 })
-    @ApiProperty({ example: 'CD', type: String })
-    readonly art: FilmArt | undefined;
 
     @Column('decimal', {
         precision: 8,
@@ -37,20 +48,26 @@ export class Film {
     @ApiProperty({ example: 1, type: Number })
     readonly preis!: number;
 
-    @Column('boolean')
-    @ApiProperty({ example: true, type: Boolean })
-    readonly ausleihbar: boolean | undefined;
-
     @Column('date')
     @ApiProperty({ example: '2023-02-28' })
     readonly erscheinungsdatum: Date | string | undefined;
 
-    @Column('simple-array')
-    readonly beschreibung: string[] | undefined;
-
-    @OneToOne(() => Titel, (titel) => titel.film, {
-        cascade: ['insert', 'remove'],
+    // https://typeorm.io/entities#special-columns
+    // https://typeorm.io/entities#column-types-for-postgres
+    // https://typeorm.io/entities#column-types-for-mysql--mariadb
+    // https://typeorm.io/entities#column-types-for-sqlite--cordova--react-native--expo
+    // 'better-sqlite3' erfordert Python zum Uebersetzen, wenn das Docker-Image gebaut wird
+    @CreateDateColumn({
+        type: dbType === 'sqlite' ? 'datetime' : 'timestamp',
     })
-    readonly titel: Titel | undefined;
-}
+    // SQLite:
+    // @CreateDateColumn({ type: 'datetime' })
+    readonly erzeugt: Date | undefined;
 
+    @UpdateDateColumn({
+        type: dbType === 'sqlite' ? 'datetime' : 'timestamp',
+    })
+    // SQLite:
+    // @UpdateDateColumn({ type: 'datetime' })
+    readonly aktualisiert: Date | undefined;
+}
