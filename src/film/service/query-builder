@@ -1,18 +1,22 @@
 import { Repository, SelectQueryBuilder } from 'typeorm';
-import {schauspieler} from '../entity/schauspieler.ts';
+import { Schauspieler } from '../entity/schauspieler.js';
 import { Film } from '../entity/film.js';
+import { Titel } from '../entity/titel.js';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
+import { getLogger } from 'nodemailer/lib/shared/index.js';
 export interface BuildIdParams{
     id:number;
     mitSchauspielern?:boolean;
 }
-@injectable()
+@Injectable()
 export class QueryBuilder{
     readonly #filmAlias:string=`${Film.name.charAt(0).toLowerCase()}${Film.name.slice(1)}`;
     readonly #titelAlias:string=`${Titel.name.charAt(0).toLowerCase()}${Titel.slice(1)}`;
     readonly #schauspielerAlias:string=`${Schauspieler.name.charAt(0).loLowerCase()}${Schauspieler.slice(1)}`;
     readonly #repo: Repository<Film>;
-    readonly #logger : =getLogger(QueryBuilder.name);
-    constructor(@injectRepository(Film) repo :Repository<Film>){
+    readonly #logger : getLogger(QueryBuilder.name);
+    constructor(@InjectRepository(Film) repo :Repository<Film>){
         this.#repo=repo;
     }
     buildId({id, mitSchauspielern =false}: BuildIdParams):SelectQueryBuilder<Film>{

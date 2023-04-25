@@ -9,8 +9,6 @@ import {
     VersionColumn,
 } from 'typeorm';
 
-
-
 @Entity()
 export class Film {
     @PrimaryGeneratedColumn()

@@ -20,7 +20,7 @@
  * @packageDocumentation
  */
 
-import { Buch, type BuchArt } from './../entity/buch.entity.js';
+import { Film } from './../entity/film.js';
 import { Injectable } from '@nestjs/common';
 import { QueryBuilder } from './query-builder.js';
 import RE2 from 're2';
