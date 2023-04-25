@@ -10,7 +10,7 @@ import { getLogger } from '../../logger/logger.js';
 
 /**
  * Typdefinition für `findById`
- */ s;
+ */
 export interface FindByIdParams {
     /** ID des gesuchten Films */
     id: number;
