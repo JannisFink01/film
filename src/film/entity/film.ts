@@ -8,30 +8,11 @@ import {
     UpdateDateColumn,
     VersionColumn,
 } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
-import { DecimalTransformer } from './decimal-transformer.js';
-import { Schauspieler } from './schauspieler.js';
 import { Titel } from './titel.js';
-import { dbType } from '../../config/dbtype.js';
 
-@Entity()
 export class Film {
     @PrimaryGeneratedColumn()
     id: number | undefined;
-
-    @OneToOne(() => Titel, (titel) => titel.film, {
-        cascade: ['insert', 'remove'],
-    })
-    readonly titel: Titel | undefined;
-
-    @Column('varchar', { length: 40 })
-    @ApiProperty({ example: 'Sam Raimi', type: String })
-    readonly regisseur!: string;
-
-    @OneToMany(() => Schauspieler, (schauspieler) => schauspieler.film, {
-        cascade: ['insert', 'remove'],
-    })
-    readonly schauspieler: Schauspieler[] | undefined;
 
     @VersionColumn()
     readonly version: number | undefined;
