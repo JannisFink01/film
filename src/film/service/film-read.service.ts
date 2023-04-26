@@ -2,6 +2,7 @@
  * Das Modul besteht aus der Klasse {@linkcode FilmReadService}.
  * @packageDocumentation
  */
+import { Film } from '../entity/film.js';
 
 import { Injectable } from '@nestjs/common';
 import { QueryBuilder } from './query-builder.js';
@@ -14,17 +15,14 @@ import { getLogger } from '../../logger/logger.js';
 export interface FindByIdParams {
     /** ID des gesuchten Films */
     id: number;
-    /** Sollen die Abbildungen mitgeladen werden? */
-    mitAbbildungen?: boolean;
+    /** Sollen die Schauspieler mitgeladen werden? */
+    mitSchauspieler?: boolean;
 }
 export interface Suchkriterien {
-    readonly isbn?: string;
-    readonly rating?: number;
+    readonly regisseur?: string;
+    readonly bewertung?: number;
     readonly preis?: number;
-    readonly rabatt?: number;
-    readonly lieferbar?: boolean;
-    readonly datum?: string;
-    readonly homepage?: string;
+    readonly erscheinungsdatum?: string;
     readonly javascript?: boolean;
     readonly typescript?: boolean;
     readonly titel?: string;
@@ -70,14 +68,14 @@ export class FilmReadService {
      *          Future aus Java)
      */
     // https://2ality.com/2015/01/es6-destructuring.html#simulating-named-parameters-in-javascript
-    async findById({ id, mitAbbildungen = false }: FindByIdParams) {
+    async findById({ id, mitSchauspieler = false }: FindByIdParams) {
         this.#logger.debug('findById: id=%d', id);
 
         // https://typeorm.io/working-with-repository
         // Das Resultat ist undefined, falls kein Datensatz gefunden
         // Lesen: Keine Transaktion erforderlich
         const film = await this.#queryBuilder
-            .buildId({ id, mitAbbildungen })
+            .buildId({ id, mitSchauspieler })
             .getOne();
         if (film === null) {
             this.#logger.debug('findById: Kein Film gefunden');
