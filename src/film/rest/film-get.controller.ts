@@ -74,7 +74,7 @@ export type FilmModel = Omit<
 };
 
 /** Film-Objekte mit HATEOAS-Links in einem JSON-Array. */
-export interface BuecherModel {
+export interface FilmeModel {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     _embedded: {
         filme: FilmModel[];
@@ -93,25 +93,16 @@ export interface BuecherModel {
  */
 export class FilmQuery implements Suchkriterien {
     @ApiProperty({ required: false })
-    declare readonly isbn: string;
+    declare readonly regisseur: string;
 
     @ApiProperty({ required: false })
-    declare readonly rating: number;
+    declare readonly bewertung: number;
 
     @ApiProperty({ required: false })
     declare readonly preis: number;
 
     @ApiProperty({ required: false })
-    declare readonly rabatt: number;
-
-    @ApiProperty({ required: false })
-    declare readonly lieferbar: boolean;
-
-    @ApiProperty({ required: false })
-    declare readonly datum: string;
-
-    @ApiProperty({ required: false })
-    declare readonly homepage: string;
+    declare readonly erscheinungsdatum: string;
 
     @ApiProperty({ required: false })
     declare readonly javascript: boolean;
@@ -256,7 +247,7 @@ export class FilmGetController {
         @Query() query: FilmQuery,
         @Req() req: Request,
         @Res() res: Response,
-    ): Promise<Response<BuecherModel | undefined>> {
+    ): Promise<Response<FilmeModel | undefined>> {
         this.#logger.debug('find: query=%o', query);
 
         if (req.accepts(['json', 'html']) === false) {
@@ -272,12 +263,10 @@ export class FilmGetController {
         }
 
         // HATEOAS: Atom Links je Film
-        const buecherModel = filme.map((film) =>
-            this.#toModel(film, req, false),
-        );
-        this.#logger.debug('find: buecherModel=%o', buecherModel);
+        const filmeModel = filme.map((film) => this.#toModel(film, req, false));
+        this.#logger.debug('find: filmeModel=%o', filmeModel);
 
-        const result: BuecherModel = { _embedded: { filme: buecherModel } };
+        const result: FilmeModel = { _embedded: { filme: filmeModel } };
         return res.json(result).send();
     }
 
