@@ -18,5 +18,5 @@ export class Schauspieler {
 
     @ManyToOne(() => Film, (film) => film.schauspieler)
     @JoinColumn({ name: 'film_id' })
-    film: any;
+    film: Film | undefined;
 }
