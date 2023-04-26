@@ -429,7 +429,7 @@ rules:
   # wegen //NOSONAR
   #line-comment-position: error
   linebreak-style: ["error", "unix"]
-  no-mixed-spaces-and-tabs": "error"
+  no-mixed-spaces-and-tabs: "error"
   logical-assignment-operators: error
   max-classes-per-file: error
   max-depth: error
