@@ -13,6 +13,10 @@ export class Schauspieler {
     @PrimaryGeneratedColumn()
     id: number | undefined;
 
-    @Column('varchar', { unique: true, length: 32 })
-    readonly beschriftung!: string;
+    @Column('varchar', { length: 40 })
+    readonly name!: string;
+
+    @ManyToOne(() => Film, (film) => film.schauspieler)
+    @JoinColumn({ name: 'film_id' })
+    film: any;
 }

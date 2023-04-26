@@ -5,6 +5,7 @@ import {
     OneToOne,
     PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Film } from './film.js';
 
 @Entity()
 export class Titel {
@@ -14,4 +15,8 @@ export class Titel {
 
     @Column('varchar', { unique: true, length: 40 })
     readonly titel!: string;
+
+    @OneToOne(() => Film, (film) => film.titel)
+    @JoinColumn({ name: 'film_id' })
+    film: Film | undefined;
 }
