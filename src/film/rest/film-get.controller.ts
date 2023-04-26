@@ -93,16 +93,19 @@ export interface FilmeModel {
  */
 export class FilmQuery implements Suchkriterien {
     @ApiProperty({ required: false })
-    declare readonly regisseur: string;
+    declare readonly isbn: string;
 
     @ApiProperty({ required: false })
-    declare readonly bewertung: number;
+    declare readonly rating: number;
 
     @ApiProperty({ required: false })
     declare readonly preis: number;
 
     @ApiProperty({ required: false })
     declare readonly erscheinungsdatum: string;
+
+    @ApiProperty({ required: false })
+    declare readonly homepage: string;
 
     @ApiProperty({ required: false })
     declare readonly javascript: boolean;
