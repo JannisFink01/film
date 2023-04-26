@@ -93,10 +93,10 @@ export interface BuecherModel {
  */
 export class FilmQuery implements Suchkriterien {
     @ApiProperty({ required: false })
-    declare readonly regisseur: string;
+    declare readonly isbn: string;
 
     @ApiProperty({ required: false })
-    declare readonly bewertung: number;
+    declare readonly rating: number;
 
     @ApiProperty({ required: false })
     declare readonly preis: number;
@@ -108,7 +108,7 @@ export class FilmQuery implements Suchkriterien {
     declare readonly lieferbar: boolean;
 
     @ApiProperty({ required: false })
-    declare readonly erscheinungsdatum: string;
+    declare readonly datum: string;
 
     @ApiProperty({ required: false })
     declare readonly homepage: string;
