@@ -16,11 +16,6 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
-import { type Film, type FilmArt } from '../entity/film.entity.js';
-import {
-    FilmReadService,
-    type Suchkriterien,
-} from '../service/film-read.service.js';
 import {
     Controller,
     Get,
@@ -32,9 +27,15 @@ import {
     Res,
     UseInterceptors,
 } from '@nestjs/common';
+import {
+    FilmReadService,
+    type Suchkriterien,
+} from '../service/film-read.service.js';
 import { Request, Response } from 'express';
+import { type Film } from '../entity/film.js';
 import { ResponseTimeInterceptor } from '../../logger/response-time.interceptor.js';
-import { Titel } from '../entity/titel.entity.js';
+//import { Schauspieler } from '../entity/schauspieler.js';
+import { Titel } from '../entity/titel.js';
 import { getBaseUri } from './getBaseUri.js';
 import { getLogger } from '../../logger/logger.js';
 import { paths } from '../../config/paths.js';
@@ -65,7 +66,7 @@ export type TitelModel = Omit<Titel, 'film' | 'id'>;
 /** Film-Objekt mit HATEOAS-Links */
 export type FilmModel = Omit<
     Film,
-    'schauspieler' | 'aktualisiert' | 'erzeugt' | 'id' | 'titel' | 'version'
+    'aktualisiert' | 'erzeugt' | 'id' | 'schauspieler' | 'titel' | 'version'
 > & {
     titel: TitelModel;
     // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -96,9 +97,6 @@ export class FilmQuery implements Suchkriterien {
 
     @ApiProperty({ required: false })
     declare readonly rating: number;
-
-    @ApiProperty({ required: false })
-    declare readonly art: FilmArt;
 
     @ApiProperty({ required: false })
     declare readonly preis: number;
@@ -300,19 +298,13 @@ export class FilmGetController {
         this.#logger.debug('#toModel: film=%o, links=%o', film, links);
         const titelModel: TitelModel = {
             titel: film.titel?.titel ?? 'N/A', // eslint-disable-line unicorn/consistent-destructuring
-            untertitel: film.titel?.untertitel ?? 'N/A', // eslint-disable-line unicorn/consistent-destructuring
         };
         /* eslint-disable unicorn/consistent-destructuring */
         const filmModel: FilmModel = {
-            isbn: film.isbn,
-            rating: film.rating,
-            art: film.art,
+            regisseur: film.regisseur,
+            bewertung: film.bewertung,
             preis: film.preis,
-            rabatt: film.rabatt,
-            lieferbar: film.lieferbar,
-            datum: film.datum,
-            homepage: film.homepage,
-            schlagwoerter: film.schlagwoerter,
+            erscheinungsdatum: film.erscheinungsdatum,
             titel: titelModel,
             _links: links,
         };
