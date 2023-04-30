@@ -224,7 +224,7 @@ export class FilmWriteController {
             titel: titelDTO.titel,
             film: undefined,
         };
-        const schauspieler = filmDTO.schauspieler?.map((schauspielerDTO) => {
+        const schauspielern = filmDTO.schauspieler?.map((schauspielerDTO) => {
             const schauspieler: Schauspieler = {
                 id: undefined,
                 name: schauspielerDTO.name,
@@ -240,7 +240,7 @@ export class FilmWriteController {
             preis: filmDTO.preis,
             erscheinungsdatum: filmDTO.erscheinungsdatum,
             titel,
-            schauspieler: schauspieler,
+            schauspieler: schauspielern,
             erzeugt: undefined,
             aktualisiert: undefined,
         };
