@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.5.2
+
 # Aufruf:   docker buildx build --tag juergenzimmermann/film:2023.1.0 .
 #           ggf. --no-cache
 #           Get-Content Dockerfile | docker run --rm --interactive hadolint/hadolint:2.12.1-beta-debian
