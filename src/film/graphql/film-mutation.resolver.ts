@@ -16,19 +16,19 @@
  */
 // eslint-disable-next-line max-classes-per-file
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-//import { type CreateError, type UpdateError } from '../service/errors.js';
+import { type CreateError, type UpdateError } from '../service/errors.js';
 import { IsInt, IsNumberString, Min } from 'class-validator';
 import { UseGuards, UseInterceptors } from '@nestjs/common';
-import { Schauspieler } from '../entity/schauspieler.js';
-//import { BadUserInputError } from './errors.js';
+import { BadUserInputError } from './errors.js';
 import { Film } from '../entity/film.js';
 import { FilmDTO } from '../rest/filmDTO.js';
 import { FilmWriteService } from '../service/film-write.service.js';
 import { type IdInput } from './film-query.resolver.js';
-//import { JwtAuthGraphQlGuard } from '../../security/auth/jwt/jwt-auth-graphql.guard.js';
+import { JwtAuthGraphQlGuard } from '../../security/auth/jwt/jwt-auth-graphql.guard.js';
 import { ResponseTimeInterceptor } from '../../logger/response-time.interceptor.js';
-//import { RolesAllowed } from '../../security/auth/roles/roles-allowed.decorator.js';
-//import { RolesGraphQlGuard } from '../../security/auth/roles/roles-graphql.guard.js';
+import { RolesAllowed } from '../../security/auth/roles/roles-allowed.decorator.js';
+import { RolesGraphQlGuard } from '../../security/auth/roles/roles-graphql.guard.js';
+import { Schauspieler } from '../entity/schauspieler.js';
 import { type Titel } from '../entity/titel.js';
 import { getLogger } from '../../logger/logger.js';
 
