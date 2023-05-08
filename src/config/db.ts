@@ -19,8 +19,8 @@
  * Das Modul enthält die Konfiguration für den Zugriff auf die DB.
  * @packageDocumentation
  */
-import { Film } from '../film/entity/film.entity.js';
 import { type DataSourceOptions } from 'typeorm';
+import { Film } from '../film/entity/film.js';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { type TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { dbType } from './dbtype.js';

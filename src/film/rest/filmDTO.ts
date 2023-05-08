@@ -7,7 +7,6 @@
 import {
     ArrayUnique,
     IsArray,
-    IsBoolean,
     IsISBN,
     IsISO8601,
     IsInt,
