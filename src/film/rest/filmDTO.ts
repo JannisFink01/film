@@ -19,8 +19,8 @@ import {
     Min,
     ValidateNested,
 } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 import { SchauspielerDTO } from './schauspielerDTO.js';
-//import { ApiProperty } from '@nestjs/swagger';
 import { TitelDTO } from './titelDTO.js';
 import { Type } from 'class-transformer';
 

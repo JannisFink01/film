@@ -3,6 +3,17 @@
  * von Filmen, z.B. beim DB-Zugriff.
  * @packageDocumentation
  */
+export interface NameExists {
+    readonly type: 'NameExists';
+    readonly name: string | null | undefined;
+    readonly id?: number;
+}
+
+/**
+ * ggf. Union-Type für diverse Fehler beim Neuanlegen eines Buches:
+ * - {@linkcode IsbnExists}
+ */
+export type CreateError = NameExists;
 
 /**
  * Klasse für eine ungültige Versionsnummer beim Ändern.

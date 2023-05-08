@@ -34,6 +34,9 @@ services:
         source: C:/Zimmermann/volumes/postgres/sql
         target: /sql
         read_only: true
+      - type: bind
+        source: .extras/db/postgres/SQL
+        target: /sql
     environment:
       POSTGRES_PASSWORD: p
       TZ: Europe/Berlin
@@ -41,7 +44,7 @@ services:
       #PGDATA: /var/lib/postgresql/data
       # https://www.postgresql.org/docs/current/auth-trust.html
       #POSTGRES_HOST_AUTH_METHOD: trust
-    #user: "postgres:postgres"
+    user: "postgres:postgres"
     security_opt:
       - label:user:postgres
       - no-new-privileges:true
