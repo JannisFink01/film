@@ -1,10 +1,11 @@
-import { type DeleteResult, Repository } from 'typeorm';
 import {
+    type CreateError,
     type FilmNotExists,
     type UpdateError,
     type VersionInvalid,
     type VersionOutdated,
 } from './errors.js';
+import { type DeleteResult, Repository } from 'typeorm';
 import { Film } from '../entity/film.js';
 import { FilmReadService } from './film-read.service.js';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -57,7 +58,7 @@ export class FilmWriteService {
      * @returns Die ID des neu angelegten Filmes oder im Fehlerfall
      * [CreateError](../types/film_service_errors.CreateError.html)
      */
-    async create(film: Film): Promise<number> {
+    async create(film: Film): Promise<CreateError | number> {
         this.#logger.debug('create: film=%o', film);
 
         const filmDb = await this.#repo.save(film); // implizite Transaktion
