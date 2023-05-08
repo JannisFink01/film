@@ -160,8 +160,8 @@ export class FilmMutationResolver {
 
     #errorMsgCreateFilm(err: CreateError) {
         switch (err.type) {
-            case 'IsbnExists': {
-                return `Die ISBN ${err.isbn} existiert bereits`;
+            case 'NameExists': {
+                return `Der Name ${err.name} existiert bereits`;
             }
             default: {
                 return 'Unbekannter Fehler';
