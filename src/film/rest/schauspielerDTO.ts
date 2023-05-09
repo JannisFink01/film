@@ -4,15 +4,11 @@
  */
 
 import { MaxLength } from 'class-validator';
-const maxLength1 = 32;
-const maxLength2 = 16;
+const maxLength = 32;
 /**
  * Entity-Klasse für Abbildung ohne TypeORM.
  */
 export class SchauspielerDTO {
-    @MaxLength(maxLength1)
+    @MaxLength(maxLength)
     readonly name!: string;
-
-    @MaxLength(maxLength2)
-    readonly contentType!: string;
 }
