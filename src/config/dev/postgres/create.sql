@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS film (
     version       integer NOT NULL DEFAULT 0,
                   -- impliziter Index als B-Baum durch UNIQUE
                   -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS
-    regisseur          varchar(40) NOT NULL USING INDEX TABLESPACE filmspace,
+    regisseur          varchar(40) NOT NULL,
                   -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-CHECK-CONSTRAINTS
                   -- https://www.postgresql.org/docs/current/functions-matching.html#FUNCTIONS-POSIX-REGEXP
-    bewertung        integer NOT NULL CHECK (rating >= 0 AND rating <= 5),
+    bewertung        integer NOT NULL CHECK (bewertung >= 0 AND bewertung <= 5),
                   -- https://www.postgresql.org/docs/current/datatype-numeric.html#DATATYPE-NUMERIC-DECIMAL
                   -- 10 Stellen, davon 2 Nachkommastellen
     preis         decimal(8,2) NOT NULL,

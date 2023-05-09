@@ -49,7 +49,7 @@ export class Film {
     readonly preis!: number;
 
     @Column('date')
-    @ApiProperty({ example: '2023-02-28' })
+    @ApiProperty({ example: '2021-01-31' })
     readonly erscheinungsdatum: Date | string | undefined;
 
     // https://typeorm.io/entities#special-columns
