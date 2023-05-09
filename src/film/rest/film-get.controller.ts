@@ -34,7 +34,6 @@ import {
 import { Request, Response } from 'express';
 import { type Film } from '../entity/film.js';
 import { ResponseTimeInterceptor } from '../../logger/response-time.interceptor.js';
-import { Schauspieler } from '../entity/schauspieler.js';
 import { Titel } from '../entity/titel.js';
 import { getBaseUri } from './getBaseUri.js';
 import { getLogger } from '../../logger/logger.js';

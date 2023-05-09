@@ -11,7 +11,7 @@ export interface NameExists {
 
 /**
  * ggf. Union-Type für diverse Fehler beim Neuanlegen eines Filmes:
- * - {@linkcode IsbnExists}
+ * - {@linkcode NameExists}
  */
 export type CreateError = NameExists;
 

@@ -26,7 +26,6 @@ import {
     Put,
     Req,
     Res,
-    UseGuards,
     UseInterceptors,
 } from '@nestjs/common';
 import { type CreateError, type UpdateError } from '../service/errors.js';
@@ -257,8 +256,8 @@ export class FilmWriteController {
 
     #handleCreateError(err: CreateError, res: Response) {
         switch (err.type) {
-            case 'RegisseurExists': {
-                return this.#handleIsbnExists(err.regisseur, res);
+            case 'NameExists': {
+                return this.#handleIsbnExists(err.name, res);
             }
 
             default: {

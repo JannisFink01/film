@@ -32,6 +32,7 @@
     "copy-resources": "node scripts/copy-resources",
     "depcheck": "depcheck",
     "eslint": "eslint --ext .ts ./src ./__tests__",
+    "eslint:fix":"eslint --fix",
     "invoke-webrequest": "pwsh -Command Invoke-WebRequest https://localhost:3000/00000000-0000-0000-0000-000000000001 -SslProtocol Tls13 -SkipCertificateCheck",
     "leasot": "leasot --exit-nicely src/**/*.ts",
     "prepack": "npm run clean && npm run copy-resources && npm run tsc",

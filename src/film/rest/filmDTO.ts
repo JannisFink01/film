@@ -5,15 +5,12 @@
  */
 
 import {
-    ArrayUnique,
     IsArray,
     IsISBN,
     IsISO8601,
     IsInt,
     IsOptional,
     IsPositive,
-    IsUrl,
-    Matches,
     Max,
     Min,
     ValidateNested,
