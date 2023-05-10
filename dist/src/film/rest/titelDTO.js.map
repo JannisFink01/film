@@ -1,1 +1,0 @@
-{"version":3,"file":"titelDTO.js","sourceRoot":"","sources":["../../../../src/film/rest/titelDTO.ts"],"names":[],"mappings":";;;;;;;;;AAMA,OAAO,EAAE,UAAU,EAAE,OAAO,EAAE,SAAS,EAAE,MAAM,iBAAiB,CAAC;AAKjE,MAAM,OAAO,QAAQ;IAGR,KAAK,CAAU;IAIf,UAAU,CAAqB;CAC3C;AALY;IAFR,OAAO,CAAC,QAAQ,CAAC;IACjB,SAAS,CAAC,EAAE,CAAC;;uCACU;AAIf;IAFR,UAAU,EAAE;IACZ,SAAS,CAAC,EAAE,CAAC;;4CAC0B"}
