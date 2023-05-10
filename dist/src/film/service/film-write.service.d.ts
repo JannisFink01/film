@@ -1,5 +1,5 @@
+import { type CreateError, type UpdateError } from './errors.js';
 import { Repository } from 'typeorm';
-import { type UpdateError } from './errors.js';
 import { Film } from '../entity/film.js';
 import { FilmReadService } from './film-read.service.js';
 import { MailService } from '../../mail/mail.service.js';
@@ -12,7 +12,7 @@ export declare class FilmWriteService {
     #private;
     private static readonly VERSION_PATTERN;
     constructor(repo: Repository<Film>, readService: FilmReadService, mailService: MailService);
-    create(film: Film): Promise<number>;
+    create(film: Film): Promise<CreateError | number>;
     update({ id, film, version, }: UpdateParams): Promise<UpdateError | number>;
     delete(id: number): Promise<boolean>;
 }

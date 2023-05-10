@@ -385,7 +385,7 @@ In der Sandbox kann man z.B. folgende Query absetzen:
   film(id: "000000000000000000000001") {
     titel
     art
-    isbn
+    regisseur
     version
   }
 }
@@ -398,7 +398,7 @@ query ($filmId: ID!) {
   film(id: $filmId) {
     titel
     art
-    isbn
+    regisseur
     version
   }
 }

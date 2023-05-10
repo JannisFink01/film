@@ -6,7 +6,7 @@
 
 import {
     IsArray,
-    IsISBN,
+    Isregisseur,
     IsISO8601,
     IsInt,
     IsOptional,
@@ -20,20 +20,20 @@ import { SchauspielerDTO } from './schauspielerDTO.js';
 import { TitelDTO } from './titelDTO.js';
 import { Type } from 'class-transformer';
 
-export const MAX_RATING = 5;
+export const MAX_BEWERTUNG = 5;
 
 /**
  * Entity-Klasse für Filme ohne TypeORM und ohne Referenzen.
  */
 export class FilmDtoOhneRef {
     // https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s13.html
-    @IsISBN(13)
+    @Isregisseur(13)
     @ApiProperty({ example: '0-007-00644-6', type: String })
     readonly regisseur!: string;
 
     @IsInt()
     @Min(0)
-    @Max(MAX_RATING)
+    @Max(MAX_BEWERTUNG)
     @ApiProperty({ example: 5, type: Number })
     readonly bewertung: number | undefined;
 

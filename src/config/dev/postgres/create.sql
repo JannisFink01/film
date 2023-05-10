@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS film (
                   -- 10 Stellen, davon 2 Nachkommastellen
     preis         decimal(8,2) NOT NULL,
                   -- https://www.postgresql.org/docs/current/datatype-datetime.html
-    erscheiungsdatum         date,
+    erscheiungserscheinungsdatum         date,
                   -- https://www.postgresql.org/docs/current/datatype-datetime.html
     erzeugt       timestamp NOT NULL DEFAULT NOW(),
     aktualisiert  timestamp NOT NULL DEFAULT NOW()

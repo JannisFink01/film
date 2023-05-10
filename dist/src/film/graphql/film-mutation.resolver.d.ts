@@ -8,7 +8,7 @@ export declare class FilmUpdateDTO extends FilmDTO {
 export declare class FilmMutationResolver {
     #private;
     constructor(service: FilmWriteService);
-    create(filmDTO: FilmDTO): Promise<number>;
+    create(filmDTO: FilmDTO): Promise<number | import("../service/errors.js").NameExists>;
     update(filmDTO: FilmUpdateDTO): Promise<number>;
     delete(id: IdInput): Promise<boolean>;
 }

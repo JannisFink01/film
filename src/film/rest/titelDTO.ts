@@ -13,9 +13,5 @@ export class TitelDTO {
     @Matches('^\\w.*')
     @MaxLength(40)
     readonly titel!: string;
-
-    @IsOptional()
-    @MaxLength(40)
-    readonly untertitel: string | undefined;
 }
 /* eslint-enable @typescript-eslint/no-magic-numbers */

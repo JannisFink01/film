@@ -69,7 +69,7 @@ export class FilmWriteController {
      * dass damit das neu angelegte Film abgerufen werden kann.
      *
      * Falls Constraints verletzt sind, wird der Statuscode `400` (`Bad Request`)
-     * gesetzt und genauso auch wenn der Titel oder die ISBN-Nummer bereits
+     * gesetzt und genauso auch wenn der Titel oder die regisseur-Nummer bereits
      * existieren.
      *
      * @param film JSON-Daten für ein Film im Request-Body.
@@ -100,7 +100,7 @@ export class FilmWriteController {
     }
 
     /**
-     * Ein vorhandenes Film wird asynchron aktualisiert.
+     * Ein vorhandener Film  wird asynchron aktualisiert.
      *
      * Im Request-Objekt von Express muss die ID des zu aktualisierenden Filmes
      * als Pfad-Parameter enthalten sein. Außerdem muss im Rumpf das zu
@@ -116,7 +116,7 @@ export class FilmWriteController {
      * required`) gesetzt; und falls sie nicht korrekt ist, der Statuscode `412`
      * (`Precondition failed`). Falls Constraints verletzt sind, wird der
      * Statuscode `400` (`Bad Request`) gesetzt und genauso auch wenn der neue
-     * Titel oder die neue ISBN-Nummer bereits existieren.
+     * Titel oder die neue regisseur-Nummer bereits existieren.
      *
      * @param film Filmdaten im Body des Request-Objekts.
      * @param id Pfad-Paramater für die ID.
@@ -128,7 +128,7 @@ export class FilmWriteController {
     @Put(':id')
     //@RolesAllowed('admin', 'mitarbeiter')
     @ApiOperation({
-        summary: 'Ein vorhandenes Film aktualisieren',
+        summary: 'Ein vorhandener Film  aktualisieren',
         tags: ['Aktualisieren'],
     })
     @ApiHeader({
@@ -257,7 +257,7 @@ export class FilmWriteController {
     #handleCreateError(err: CreateError, res: Response) {
         switch (err.type) {
             case 'NameExists': {
-                return this.#handleIsbnExists(err.name, res);
+                return this.#handleregisseurExists(err.name, res);
             }
 
             default: {
@@ -266,12 +266,12 @@ export class FilmWriteController {
         }
     }
 
-    #handleIsbnExists(
-        isbn: string | null | undefined,
+    #handleregisseurExists(
+        regisseur: string | null | undefined,
         res: Response,
     ): Response {
-        const msg = `Die ISBN-Nummer "${isbn}" existiert bereits.`;
-        this.#logger.debug('#handleIsbnExists(): msg=%s', msg);
+        const msg = `Die regisseur-Nummer "${regisseur}" existiert bereits.`;
+        this.#logger.debug('#handleregisseurExists(): msg=%s', msg);
         return res
             .status(HttpStatus.UNPROCESSABLE_ENTITY)
             .set('Content-Type', 'text/plain')

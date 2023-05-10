@@ -106,7 +106,7 @@ export class AuthService {
      * einem Controller über die Property "user" des Request-Objekts benutzt
      * werden kann.
      * @return Objekt mit einem JWT als künftiger "Access Token", dem
-     * Zeitstempel für das Ablaufdatum (`expiresIn`) und den Rollen als Array
+     * Zeitstempel für das Ablauferscheinungsdatum (`expiresIn`) und den Rollen als Array
      */
     // eslint-disable-next-line @typescript-eslint/require-await
     async login(user: unknown) {

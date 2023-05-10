@@ -93,7 +93,7 @@ export class AuthController {
      *
      * Falls das Einloggen erfolgreich war, wird der Statuscode `200` (`OK`)
      * zurückgeliefert. Im Rumpf steht dann der _JSON Web Token_, der
-     * Zeitstempel für das Ablaufdatum (`expiresIn`) und ein JSON-Array mit den
+     * Zeitstempel für das Ablauferscheinungsdatum (`expiresIn`) und ein JSON-Array mit den
      * Rollen.
      *
      * Falls das Einloggen nicht erfolgreich war, wird der Statuscode `401`

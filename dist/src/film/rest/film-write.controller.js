@@ -101,16 +101,16 @@ let FilmWriteController = FilmWriteController_1 = class FilmWriteController {
     #handleCreateError(err, res) {
         switch (err.type) {
             case 'RegisseurExists': {
-                return this.#handleIsbnExists(err.regisseur, res);
+                return this.#handleregisseurExists(err.regisseur, res);
             }
             default: {
                 return res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
     }
-    #handleIsbnExists(isbn, res) {
-        const msg = `Die ISBN-Nummer "${isbn}" existiert bereits.`;
-        this.#logger.debug('#handleIsbnExists(): msg=%s', msg);
+    #handleregisseurExists(regisseur, res) {
+        const msg = `Die regisseur-Nummer "${regisseur}" existiert bereits.`;
+        this.#logger.debug('#handleregisseurExists(): msg=%s', msg);
         return res
             .status(HttpStatus.UNPROCESSABLE_ENTITY)
             .set('Content-Type', 'text/plain')
@@ -180,7 +180,7 @@ __decorate([
 __decorate([
     Put(':id'),
     ApiOperation({
-        summary: 'Ein vorhandenes Film aktualisieren',
+        summary: 'Ein vorhandener Film  aktualisieren',
         tags: ['Aktualisieren'],
     }),
     ApiHeader({

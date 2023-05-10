@@ -119,8 +119,8 @@ let FilmMutationResolver = FilmMutationResolver_1 = class FilmMutationResolver {
     }
     #errorMsgCreateFilm(err) {
         switch (err.type) {
-            case 'IsbnExists': {
-                return `Die ISBN ${err.isbn} existiert bereits`;
+            case 'NameExists': {
+                return `Der Name ${err.name} existiert bereits`;
             }
             default: {
                 return 'Unbekannter Fehler';

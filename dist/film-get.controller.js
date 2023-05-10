@@ -24,11 +24,11 @@ export class FilmQuery {
 __decorate([
     ApiProperty({ required: false }),
     __metadata("design:type", String)
-], FilmQuery.prototype, "isbn", void 0);
+], FilmQuery.prototype, "regisseur", void 0);
 __decorate([
     ApiProperty({ required: false }),
     __metadata("design:type", Number)
-], FilmQuery.prototype, "rating", void 0);
+], FilmQuery.prototype, "bewertung", void 0);
 __decorate([
     ApiProperty({ required: false }),
     __metadata("design:type", Number)

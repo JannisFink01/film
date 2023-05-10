@@ -23,8 +23,8 @@ export interface FilmeModel {
     };
 }
 export declare class FilmQuery implements Suchkriterien {
-    readonly isbn: string;
-    readonly rating: number;
+    readonly regisseur: string;
+    readonly bewertung: number;
     readonly preis: number;
     readonly erscheinungsdatum: string;
     readonly homepage: string;

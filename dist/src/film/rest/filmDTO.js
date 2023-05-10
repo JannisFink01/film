@@ -7,12 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { IsArray, IsISBN, IsISO8601, IsInt, IsOptional, IsPositive, Max, Min, ValidateNested, } from 'class-validator';
+import { IsArray, Isregisseur, IsISO8601, IsInt, IsOptional, IsPositive, Max, Min, ValidateNested, } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { SchauspielerDTO } from './schauspielerDTO.js';
 import { TitelDTO } from './titelDTO.js';
 import { Type } from 'class-transformer';
-export const MAX_RATING = 5;
+export const MAX_BEWERTUNG = 5;
 export class FilmDtoOhneRef {
     regisseur;
     bewertung;
@@ -20,14 +20,14 @@ export class FilmDtoOhneRef {
     erscheinungsdatum;
 }
 __decorate([
-    IsISBN(13),
+    Isregisseur(13),
     ApiProperty({ example: '0-007-00644-6', type: String }),
     __metadata("design:type", String)
 ], FilmDtoOhneRef.prototype, "regisseur", void 0);
 __decorate([
     IsInt(),
     Min(0),
-    Max(MAX_RATING),
+    Max(MAX_BEWERTUNG),
     ApiProperty({ example: 5, type: Number }),
     __metadata("design:type", Object)
 ], FilmDtoOhneRef.prototype, "bewertung", void 0);

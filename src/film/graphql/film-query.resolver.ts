@@ -62,12 +62,12 @@ export class FilmQueryResolver {
         const suchkriterium = titelStr === undefined ? {} : { titel: titelStr };
         const filme = await this.#service.find(suchkriterium);
         if (filme.length === 0) {
-            throw new BadUserInputError('Es wurden keine Buecher gefunden.');
+            throw new BadUserInputError('Es wurden keine filme gefunden.');
         }
 
-        const buecherDTO = filme.map((film) => this.#toFilmDTO(film));
-        this.#logger.debug('find: buecherDTO=%o', buecherDTO);
-        return buecherDTO;
+        const filmeDTO = filme.map((film) => this.#toFilmDTO(film));
+        this.#logger.debug('find: filmeDTO=%o', filmeDTO);
+        return filmeDTO;
     }
 
     #toFilmDTO(film: Film): FilmDTO {
