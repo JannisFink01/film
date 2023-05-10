@@ -1,4 +1,4 @@
-/* eslint-disable max-classes-per-file, @typescript-eslint/no-magic-numbers */
+/* eslint-disable max-classes-per-file */
 /**
  * Das Modul besteht aus der Entity-Klasse.
  * @packageDocumentation
@@ -6,7 +6,6 @@
 
 import {
     IsArray,
-    Isregisseur,
     IsISO8601,
     IsInt,
     IsOptional,
@@ -27,8 +26,7 @@ export const MAX_BEWERTUNG = 5;
  */
 export class FilmDtoOhneRef {
     // https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s13.html
-    @Isregisseur(13)
-    @ApiProperty({ example: '0-007-00644-6', type: String })
+    @ApiProperty({ example: 'Steven Spielberg', type: String })
     readonly regisseur!: string;
 
     @IsInt()
@@ -66,4 +64,4 @@ export class FilmDTO extends FilmDtoOhneRef {
 
     // SchauspielerDTO
 }
-/* eslint-enable max-classes-per-file, @typescript-eslint/no-magic-numbers */
+/* eslint-enable max-classes-per-file */
