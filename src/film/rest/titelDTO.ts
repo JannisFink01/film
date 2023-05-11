@@ -4,7 +4,7 @@
  * @packageDocumentation
  */
 
-import { IsOptional, Matches, MaxLength } from 'class-validator';
+import { Matches, MaxLength } from 'class-validator';
 
 /**
  * Entity-Klasse für Titel ohne TypeORM.
