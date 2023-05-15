@@ -58,5 +58,5 @@ GET {{restUrl}}?php=true
 ### Suche mit gueltiger Filmart
 GET {{restUrl}}?art=KINDLE
 
-### Suche mit gueltigem Rating
+### Suche mit gueltiger Bewertung
 GET {{restUrl}}?bewertung=1
