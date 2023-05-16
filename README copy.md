@@ -242,7 +242,7 @@ Das Administrationswerkzeug _pgadmin_ wurde innerhalb von Kubernetes gestartet
 und kann wegen Port-Forwarding mit `http://localhost:8888` aufgerufen werden.
 
 Beim Deinstallieren muss man manuell die 4 _PersistentVolumeClaim_ mit den Namen
-`postgres-data-volume-postgres-0`, `postgres-conf-volume-postgres-0`,
+V`postgres-data-volume-postgres-0`, `postgres-conf-volume-postgres-0`,
 `pgadmin-pgadmin-volume-pgadmin-0` und `pgadmin-pgadmin4-volume-pgadmin-0`
 löschen, die durch die _StatefulSet_ `postgres` und `pgadmin` erstellt wurden.
 Dazu gibt es das PowerShell-Skript `delete-pvc.ps1`.
