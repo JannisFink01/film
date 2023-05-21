@@ -45,7 +45,7 @@ const geaenderterFilmIdNichtVorhanden: FilmDtoOhneRef = {
     preis: 44.4,
     erscheinungsdatum: '2022-02-04',
 };
-const idNichtVorhanden = '999999';
+const idNichtVorhanden = '57893ß534';
 
 const geaenderterFilmInvalid: Record<string, unknown> = {
     regisseur: 'falsche-regisseur',
