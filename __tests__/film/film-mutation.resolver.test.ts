@@ -62,7 +62,7 @@ describe('GraphQL Mutations', () => {
     });
 
     // -------------------------------------------------------------------------
-    test('Neues Film', async () => {
+    test('Neue Film', async () => {
         // given
         const token = await loginGraphQL(client);
         const authorization = { Authorization: `Bearer ${token}` }; // eslint-disable-line @typescript-eslint/naming-convention
@@ -169,7 +169,7 @@ describe('GraphQL Mutations', () => {
     });
 
     // -------------------------------------------------------------------------
-    test('Neues Film nur als "admin"/"mitarbeiter"', async () => {
+    test('Neuen Film nur als "admin"/"mitarbeiter"', async () => {
         // given
         const token = await loginGraphQL(client, 'dirk.delta', 'p');
         const authorization = { Authorization: `Bearer ${token}` }; // eslint-disable-line @typescript-eslint/naming-convention

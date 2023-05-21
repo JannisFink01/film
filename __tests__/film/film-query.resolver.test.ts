@@ -37,11 +37,11 @@ export type GraphQLResponseBody = Pick<GraphQLResponse, 'data' | 'errors'>;
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const idVorhanden = '1';
+const idVorhanden = '999999';
 
-const titelVorhanden = 'Alpha';
+const titelVorhanden = 'Terminator 3';
 
-const teilTitelVorhanden = 'a';
+const teilTitelVorhanden = 'Terminator 3';
 
 const teilTitelNichtVorhanden = 'abc';
 

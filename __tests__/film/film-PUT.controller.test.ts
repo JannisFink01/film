@@ -32,20 +32,20 @@ import { loginRest } from '../login.js';
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
 const geaenderterFilm: FilmDtoOhneRef = {
-    regisseur: '978-0-201-63361-0',
-    bewertung: 5,
-    preis: 3333,
-    erscheinungsdatum: '2022-03-03',
+    regisseur: 'Luc Besson',
+    bewertung: 4,
+    preis: 11.1,
+    erscheinungsdatum: '2022-02-01 00:00:00',
 };
 const idVorhanden = '30';
 
 const geaenderterFilmIdNichtVorhanden: FilmDtoOhneRef = {
-    regisseur: '978-0-007-09732-6',
-    bewertung: 4,
-    preis: 44.4,
+    regisseur: 'Hallo ich bin ein Test',
+    bewertung: 987,
+    preis: 999.89,
     erscheinungsdatum: '2022-02-04',
 };
-const idNichtVorhanden = '999999';
+const idNichtVorhanden = '2022-02-01 00:00:01';
 
 const geaenderterFilmInvalid: Record<string, unknown> = {
     regisseur: 'falsche-regisseur',

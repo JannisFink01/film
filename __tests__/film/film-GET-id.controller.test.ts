@@ -32,7 +32,7 @@ import { HttpStatus } from '@nestjs/common';
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
 const idVorhanden = '1';
-const idNichtVorhanden = '999999';
+const idNichtVorhanden = '777888';
 const idVorhandenETag = '1';
 
 // -----------------------------------------------------------------------------
