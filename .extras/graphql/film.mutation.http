@@ -1,0 +1,173 @@
+// Copyright (C) 2020 - present Juergen Zimmermann, Hochschule Karlsruhe
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+//
+// N e t z w e r k   -   V e r b i n d u n g   n o t w e n d i g
+//
+
+### Einloggen in der Rolle "admin", "mitarbeiter" und "kunde"
+// @name login
+POST {{graphQlUrl}}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  login(username: "admin", password: "p") { token expiresIn roles }
+}
+
+### Einloggen in der Rolle "mitarbeiter" und "kunde"
+// @name login
+POST {{graphQlUrl}}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  login(username: "alfred.alpha", password: "p") { token expiresIn roles }
+}
+
+### Einloggen in der Rolle "kunde"
+// @name login
+POST {{graphQlUrl}}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  login(username: "dirk.delta", password: "p") { token expiresIn roles }
+}
+
+### Einloggen mit falschem Passwort
+// @name login
+POST {{graphQlUrl}}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  login(username: "admin", password: "FALSCH") { token expiresIn roles }
+}
+
+### Neuen Film anlegen
+POST {{graphQlUrl}}
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.login.token}}
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  create(
+    input: {
+      "regisseur": "Sam Raimi",
+      "bewertung": 4,
+      "preis": 76.00,
+      "erscheinungsdatum": "2002-01-01",
+      "titel": {
+        "titel": "Spider-Man"
+      }
+    }
+  )
+}
+
+### Neuen Film mit ungueltigen Daten anlegen
+POST {{graphQlUrl}}
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.login.token}}
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  create(
+    input: {
+      "regisseur": 123,
+      "bewertung": abc,
+      "preis": "fünf",
+      "erscheinungsdatum": "2002-01-01",
+      "titel": {
+        "titel": "keinTitel"
+      }
+    }
+  )
+}
+
+### Vorhandenen Film aktualisieren
+POST {{graphQlUrl}}
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.login.token}}
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  update(
+    input: {
+      id: "40",
+      "regisseur": "Cristopher Nolan",
+      "bewertung": 5,
+      "preis": 99.00,
+      "erscheinungsdatum": "2002-01-01",
+      "titel": {
+        "titel": "Avengers"
+      }
+    }
+  )
+}
+
+### Vorhandenen Film mit ungueltigen Werten aktualisieren
+POST {{graphQlUrl}}
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.login.token}}
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  update(
+    input: {
+      id: 40,
+      version: 0,
+      isbn: "falsche-ISBN",
+      rating: -1,
+      art: KINDLE,
+      preis: -1,
+      rabatt: 2,
+      lieferbar: false,
+      datum: "12345-123-123",
+      homepage: "anyHomepage"
+    }
+  )
+}
+
+### Nicht-Vorhandenen Film aktualisieren
+POST {{graphQlUrl}}
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.login.token}}
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  update(
+    input: {
+      id: "999999",
+      "regisseur": "Holla die Waldfee",
+      "bewertung": -4,
+      "preis": 76.00,
+      "erscheinungsdatum": "20"
+      "titel": {
+        "titel": "78890"
+      }
+    }
+  )
+}
+
+### Vorhandenen Film loeschen
+POST {{graphQlUrl}}
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.data.login.token}}
+X-REQUEST-TYPE: GraphQL
+
+mutation {
+  delete(id: "60")
+}
