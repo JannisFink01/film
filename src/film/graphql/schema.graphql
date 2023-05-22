@@ -42,7 +42,7 @@ input TitelInput {
   titel: String!
 }
 
-"Daten zu den Abbildungen eines Filmes"
+"Daten zu den Schauspielern eines Filmes"
 input SchauspielerInput {
     name: String!
 }
