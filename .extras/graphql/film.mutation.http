@@ -66,12 +66,12 @@ X-REQUEST-TYPE: GraphQL
 mutation {
   create(
     input: {
-      "regisseur": "Sam Raimi",
-      "bewertung": 4,
-      "preis": 76.00,
-      "erscheinungsdatum": "2002-01-01",
-      "titel": {
-        "titel": "Spider-Man"
+      regisseur: "Sam Raimi",
+      bewertung: 4,
+      preis: 76.00,
+      erscheinungsdatum: "2002-01-01",
+      titel: {
+        titel: "Spider-Man"
       }
     }
   )
@@ -86,12 +86,12 @@ X-REQUEST-TYPE: GraphQL
 mutation {
   create(
     input: {
-      "regisseur": 123,
-      "bewertung": abc,
-      "preis": "fünf",
-      "erscheinungsdatum": "2002-01-01",
-      "titel": {
-        "titel": "keinTitel"
+      regisseur: 123,
+      bewertung: abc,
+      preis: "fünf",
+      erscheinungsdatum: "2002-01-01",
+      titel: {
+        titel: "keinTitel"
       }
     }
   )
@@ -107,12 +107,12 @@ mutation {
   update(
     input: {
       id: "40",
-      "regisseur": "Cristopher Nolan",
-      "bewertung": 5,
-      "preis": 99.00,
-      "erscheinungsdatum": "2002-01-01",
-      "titel": {
-        "titel": "Avengers"
+      regisseur: "Cristopher Nolan",
+      bewertung: 5,
+      preis: 99.00,
+      erscheinungsdatum: "2002-01-01",
+      titel: {
+        titel: "Avengers"
       }
     }
   )
@@ -129,14 +129,10 @@ mutation {
     input: {
       id: 40,
       version: 0,
-      isbn: "falsche-ISBN",
-      rating: -1,
-      art: KINDLE,
+      regisseur: 
+      bewertung: -1,
       preis: -1,
-      rabatt: 2,
-      lieferbar: false,
-      datum: "12345-123-123",
-      homepage: "anyHomepage"
+      erscheinungsdatum: "12345-123-123",
     }
   )
 }
@@ -151,13 +147,10 @@ mutation {
   update(
     input: {
       id: "999999",
-      "regisseur": "Holla die Waldfee",
-      "bewertung": -4,
-      "preis": 76.00,
-      "erscheinungsdatum": "20"
-      "titel": {
-        "titel": "78890"
-      }
+      regisseur: "Holla die Waldfee",
+      bewertung: -4,
+      preis: 76.00,
+      erscheinungsdatum: "20"
     }
   )
 }
