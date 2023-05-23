@@ -118,12 +118,12 @@ describe('GraphQL Mutations', () => {
                 mutation {
                     create(
                         input: {
-                            regisseur: 55,
-                            bewertung: "hallo",
-                            preis: 4782938478329.748293758932749132,
+                            regisseur: 123,
+                            bewertung: -5,
+                            preis: -4782938478329.748293758932749132,
                             erscheinungsdatum: "2022-0222222-28",
                             titel: {
-                                titel: "Titelcreatemutation"
+                                titel: "?!2345"
                             }
                         }
                     )
@@ -271,7 +271,7 @@ describe('GraphQL Mutations', () => {
                         input: {
                             id: "${id}",
                             version: 0,
-                            regisseur: "falsche-regisseur",
+                            regisseur: 123
                             bewertung: -88,
                             preis: -1,
                             erscheinungsdatum: "12345-123-123",

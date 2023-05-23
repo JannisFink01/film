@@ -86,10 +86,10 @@ X-REQUEST-TYPE: GraphQL
 mutation {
   create(
     input: {
-      regisseur: 123,
-      bewertung: abc,
-      preis: "fünf",
-      erscheinungsdatum: "2002-01-01",
+      regisseur: "123",
+      bewertung: -1,
+      preis: -20.00,
+      erscheinungsdatum: "203939-03451-24241",
       titel: {
         titel: "keinTitel"
       }
