@@ -1,0 +1,25 @@
+name: Film
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest  
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2  
+
+    - name: Install Dependencies
+      run: npm install 
+
+    - name: Build
+      run: npm run build
+
+    - name: Run Tests
+      run: npm run test 
+      
+    - name: Deploy
+      run: npm run deploy 
