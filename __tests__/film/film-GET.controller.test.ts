@@ -33,8 +33,6 @@ import { HttpStatus } from '@nestjs/common';
 // -----------------------------------------------------------------------------
 const titelVorhanden = 'a';
 const titelNichtVorhanden = 'xx';
-const schlagwortVorhanden = 'javascript';
-const schlagwortNichtVorhanden = 'csharp';
 
 // -----------------------------------------------------------------------------
 // T e s t s
@@ -78,11 +76,11 @@ describe('GET /rest', () => {
             .map((film) => film._links.self.href)
             .forEach((selfLink) => {
                 // eslint-disable-next-line security/detect-non-literal-regexp, security-node/non-literal-reg-expr
-                expect(selfLink).toMatch(new RegExp(`^${baseURL}`, 'u'));
+                expect(selfLink).toMatch(new RegExp(`^${baseURL}`, 'iu'));
             });
     });
 
-    test('filme mit einem Teil-Titel suchen', async () => {
+    test('Filme mit einem Teil-Titel suchen', async () => {
         // given
         const params = { titel: titelVorhanden };
 
@@ -110,43 +108,9 @@ describe('GET /rest', () => {
             );
     });
 
-    test('filme zu einem nicht vorhandenen Teil-Titel suchen', async () => {
+    test('Filme zu einem nicht vorhandenen Teil-Titel suchen', async () => {
         // given
         const params = { titel: titelNichtVorhanden };
-
-        // when
-        const response: AxiosResponse<string> = await client.get('/', {
-            params,
-        });
-
-        // then
-        const { status, data } = response;
-
-        expect(status).toBe(HttpStatus.NOT_FOUND);
-        expect(data).toMatch(/^not found$/iu);
-    });
-
-    test('Mind. 1 Film mit vorhandenem Schlagwort', async () => {
-        // given
-        const params = { [schlagwortVorhanden]: 'true' };
-
-        // when
-        const response: AxiosResponse<FilmeModel> = await client.get('/', {
-            params,
-        });
-
-        // then
-        const { status, headers, data } = response;
-
-        expect(status).toBe(HttpStatus.OK);
-        expect(headers['content-type']).toMatch(/json/iu);
-        // JSON-Array mit mind. 1 JSON-Objekt
-        expect(data).toBeDefined();
-    });
-
-    test('Keine filme zu einem nicht vorhandenen Schlagwort', async () => {
-        // given
-        const params = { [schlagwortNichtVorhanden]: 'true' };
 
         // when
         const response: AxiosResponse<string> = await client.get('/', {

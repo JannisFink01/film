@@ -62,7 +62,7 @@ export class FilmWriteController {
     }
 
     /**
-     * Ein neues Film wird asynchron angelegt. Das neu anzulegende Film ist als
+     * Ein neuer Film wird asynchron angelegt. Das neu anzulegende Film ist als
      * JSON-Datensatz im Request-Objekt enthalten. Wenn es keine
      * Verletzungen von Constraints gibt, wird der Statuscode `201` (`Created`)
      * gesetzt und im Response-Header wird `Location` auf die URI so gesetzt,
@@ -78,7 +78,7 @@ export class FilmWriteController {
      */
     @Post()
     //@RolesAllowed('admin', 'mitarbeiter')
-    @ApiOperation({ summary: 'Ein neues Film anlegen' })
+    @ApiOperation({ summary: 'Einen neuen Film anlegen' })
     @ApiCreatedResponse({ description: 'Erfolgreich neu angelegt' })
     @ApiBadRequestResponse({ description: 'Fehlerhafte Filmdaten' })
     async create(

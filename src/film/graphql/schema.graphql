@@ -47,7 +47,7 @@ input SchauspielerInput {
     name: String!
 }
 
-"Daten für ein neues Film"
+"Daten für einen neuen Film"
 input FilmInput {
   regisseur: String
   bewertung: Int

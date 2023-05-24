@@ -37,11 +37,11 @@ export type GraphQLResponseBody = Pick<GraphQLResponse, 'data' | 'errors'>;
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const idVorhanden = '999999';
+const idVorhanden = '40';
 
 const titelVorhanden = 'Terminator 3';
 
-const teilTitelVorhanden = 'Terminator 3';
+const teilTitelVorhanden = 'a';
 
 const teilTitelNichtVorhanden = 'abc';
 
@@ -76,7 +76,6 @@ describe('GraphQL Queries', () => {
                     film(id: "${idVorhanden}") {
                         version
                         regisseur
-                        art
                         titel {
                             titel
                         }
@@ -155,7 +154,6 @@ describe('GraphQL Queries', () => {
             query: `
                 {
                     filme(titel: "${titelVorhanden}") {
-                        art
                         titel {
                             titel
                         }
@@ -198,7 +196,6 @@ describe('GraphQL Queries', () => {
             query: `
                 {
                     filme(titel: "${teilTitelVorhanden}") {
-                        art
                         titel {
                             titel
                         }
@@ -241,7 +238,6 @@ describe('GraphQL Queries', () => {
             query: `
                 {
                     filme(titel: "${teilTitelNichtVorhanden}") {
-                        art
                         titel {
                             titel
                         }

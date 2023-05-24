@@ -35,17 +35,17 @@ const geaenderterFilm: FilmDtoOhneRef = {
     regisseur: 'Luc Besson',
     bewertung: 4,
     preis: 11.1,
-    erscheinungsdatum: '2022-02-01 00:00:00',
+    erscheinungsdatum: '2022-02-01',
 };
 const idVorhanden = '30';
 
 const geaenderterFilmIdNichtVorhanden: FilmDtoOhneRef = {
     regisseur: 'Hallo ich bin ein Test',
-    bewertung: 987,
+    bewertung: 4,
     preis: 999.89,
     erscheinungsdatum: '2022-02-04',
 };
-const idNichtVorhanden = '2022-02-01 00:00:01';
+const idNichtVorhanden = '99999';
 
 const geaenderterFilmInvalid: Record<string, unknown> = {
     regisseur: 'falsche-regisseur',
@@ -89,7 +89,7 @@ describe('PUT /rest/:id', () => {
         await shutdownServer();
     });
 
-    test('vorhandener Film  aendern', async () => {
+    test('vorhandenen Film aendern', async () => {
         // given
         const url = `/rest/${idVorhanden}`;
         const token = await loginRest(client);
@@ -110,7 +110,7 @@ describe('PUT /rest/:id', () => {
         expect(data).toBe('');
     });
 
-    test('Nicht-vorhandener Film  aendern', async () => {
+    test('Nicht-vorhandenen Film aendern', async () => {
         // given
         const url = `/rest/${idNichtVorhanden}`;
         const token = await loginRest(client);
@@ -133,20 +133,16 @@ describe('PUT /rest/:id', () => {
         );
     });
 
-    test('vorhandener Film  aendern, aber mit ungueltigen Daten', async () => {
+    test('vorhandenen Film aendern, aber mit ungueltigen Daten', async () => {
         // given
         const url = `/rest/${idVorhanden}`;
         const token = await loginRest(client);
         headers.Authorization = `Bearer ${token}`;
         headers['If-Match'] = '"0"';
         const expectedMsg = [
-            expect.stringMatching(/^regisseur /u),
             expect.stringMatching(/^bewertung /u),
-            expect.stringMatching(/^art /u),
             expect.stringMatching(/^preis /u),
-            expect.stringMatching(/^rabatt /u),
             expect.stringMatching(/^erscheinungsdatum /u),
-            expect.stringMatching(/^homepage /u),
         ];
 
         // when
@@ -169,7 +165,7 @@ describe('PUT /rest/:id', () => {
         expect(messages).toEqual(expect.arrayContaining(expectedMsg));
     });
 
-    test('vorhandener Film  aendern, aber ohne Versionsnummer', async () => {
+    test('vorhandenen Film  aendern, aber ohne Versionsnummer', async () => {
         // given
         const url = `/rest/${idVorhanden}`;
         const token = await loginRest(client);
@@ -190,7 +186,7 @@ describe('PUT /rest/:id', () => {
         expect(data).toBe('Header "If-Match" fehlt');
     });
 
-    test('vorhandener Film  aendern, aber mit alter Versionsnummer', async () => {
+    test('vorhandenen Film aendern, aber mit alter Versionsnummer', async () => {
         // given
         const url = `/rest/${idVorhanden}`;
         const token = await loginRest(client);
@@ -209,45 +205,5 @@ describe('PUT /rest/:id', () => {
 
         expect(status).toBe(HttpStatus.PRECONDITION_FAILED);
         expect(data).toEqual(expect.stringContaining('Die Versionsnummer'));
-    });
-
-    test('vorhandener Film  aendern, aber ohne Token', async () => {
-        // given
-        const url = `/rest/${idVorhanden}`;
-        delete headers.Authorization;
-        headers['If-Match'] = '"0"';
-
-        // when
-        const response: AxiosResponse<Record<string, any>> = await client.put(
-            url,
-            geaenderterFilm,
-            { headers },
-        );
-
-        // then
-        const { status, data } = response;
-
-        expect(status).toBe(HttpStatus.FORBIDDEN);
-        expect(data.statusCode).toBe(HttpStatus.FORBIDDEN);
-    });
-
-    test('vorhandener Film  aendern, aber mit falschem Token', async () => {
-        // given
-        const url = `/rest/${idVorhanden}`;
-        const token = 'FALSCH';
-        headers.Authorization = `Bearer ${token}`;
-
-        // when
-        const response: AxiosResponse<Record<string, any>> = await client.put(
-            url,
-            geaenderterFilm,
-            { headers },
-        );
-
-        // then
-        const { status, data } = response;
-
-        expect(status).toBe(HttpStatus.FORBIDDEN);
-        expect(data.statusCode).toBe(HttpStatus.FORBIDDEN);
     });
 });

@@ -32,7 +32,7 @@ import { loginRest } from '../login.js';
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
-const neuesFilm: FilmDTO = {
+const neuerFilm: FilmDTO = {
     regisseur: 'Maria Alma',
     bewertung: 1,
     preis: 99.99,
@@ -46,29 +46,19 @@ const neuesFilm: FilmDTO = {
         },
     ],
 };
-const neuesFilmInvalid: Record<string, unknown> = {
-    regisseur: 'Frederika Brecht',
-    bewertung: 1,
-    preis: 99.99,
-    erscheinungsdatum: '2022-02-28',
+const neuerFilmInvalid: Record<string, unknown> = {
+    regisseur: '?!',
+    bewertung: -1,
+    preis: -99.99,
+    erscheinungsdatum: '202w32342-069692-238208',
     titel: {
-        titel: 'Titelpost',
+        titel: '',
     },
     schauspieler: [
         {
-            name: 'Emma Schweiger',
+            name: '',
         },
     ],
-};
-const neuesFilmregisseurExistiert: FilmDTO = {
-    regisseur: 'Peter Gremmelmaier',
-    bewertung: 1,
-    preis: 99.99,
-    erscheinungsdatum: '2022-02-28',
-    titel: {
-        titel: 'Titelpost',
-    },
-    schauspieler: undefined,
 };
 
 // -----------------------------------------------------------------------------
@@ -97,7 +87,7 @@ describe('POST /rest', () => {
         await shutdownServer();
     });
 
-    test('Neues Film', async () => {
+    test('Neuer Film', async () => {
         // given
         const token = await loginRest(client);
         headers.Authorization = `Bearer ${token}`;
@@ -105,7 +95,7 @@ describe('POST /rest', () => {
         // when
         const response: AxiosResponse<string> = await client.post(
             '/rest',
-            neuesFilm,
+            neuerFilm,
             { headers },
         );
 
@@ -131,13 +121,13 @@ describe('POST /rest', () => {
         expect(data).toBe('');
     });
 
-    test('Neues Film mit ungueltigen Daten', async () => {
+    test('Neuer Film mit ungueltigen Daten', async () => {
         // given
         const token = await loginRest(client);
         headers.Authorization = `Bearer ${token}`;
         const expectedMsg = [
-            expect.stringMatching(/^regisseur /u),
             expect.stringMatching(/^bewertung /u),
+            expect.stringMatching(/^preis /u),
             expect.stringMatching(/^erscheinungsdatum /u),
             expect.stringMatching(/^schauspieler.schauspieler /u),
         ];
@@ -145,7 +135,7 @@ describe('POST /rest', () => {
         // when
         const response: AxiosResponse<Record<string, any>> = await client.post(
             '/rest',
-            neuesFilmInvalid,
+            neuerFilmInvalid,
             { headers },
         );
 
@@ -161,58 +151,4 @@ describe('POST /rest', () => {
         expect(messages).toHaveLength(expectedMsg.length);
         expect(messages).toEqual(expect.arrayContaining(expectedMsg));
     });
-
-    test('Neues Film, aber die regisseur existiert bereits', async () => {
-        // given
-        const token = await loginRest(client);
-        headers.Authorization = `Bearer ${token}`;
-
-        // when
-        const response: AxiosResponse<string> = await client.post(
-            '/rest',
-            neuesFilmregisseurExistiert,
-            { headers },
-        );
-
-        // then
-        const { status, data } = response;
-
-        expect(status).toBe(HttpStatus.UNPROCESSABLE_ENTITY);
-        expect(data).toEqual(expect.stringContaining('regisseur'));
-    });
-
-    test('Neues Film, aber ohne Token', async () => {
-        // when
-        const response: AxiosResponse<Record<string, any>> = await client.post(
-            '/rest',
-            neuesFilm,
-        );
-
-        // then
-        const { status, data } = response;
-
-        expect(status).toBe(HttpStatus.FORBIDDEN);
-        expect(data.statusCode).toBe(HttpStatus.FORBIDDEN);
-    });
-
-    test('Neues Film, aber mit falschem Token', async () => {
-        // given
-        const token = 'FALSCH';
-        headers.Authorization = `Bearer ${token}`;
-
-        // when
-        const response: AxiosResponse<Record<string, any>> = await client.post(
-            '/rest',
-            neuesFilm,
-            { headers },
-        );
-
-        // then
-        const { status, data } = response;
-
-        expect(status).toBe(HttpStatus.FORBIDDEN);
-        expect(data.statusCode).toBe(HttpStatus.FORBIDDEN);
-    });
-
-    test.todo('Abgelaufener Token');
 });

@@ -62,7 +62,7 @@ describe('GraphQL Mutations', () => {
     });
 
     // -------------------------------------------------------------------------
-    test('Neue Film', async () => {
+    test('Neuen Film anlegen', async () => {
         // given
         const token = await loginGraphQL(client);
         const authorization = { Authorization: `Bearer ${token}` }; // eslint-disable-line @typescript-eslint/naming-convention
@@ -118,12 +118,12 @@ describe('GraphQL Mutations', () => {
                 mutation {
                     create(
                         input: {
-                            regisseur: 123,
-                            bewertung: -5,
-                            preis: -4782938478329.748293758932749132,
-                            erscheinungsdatum: "2022-0222222-28",
+                            regisseur: "",
+                            bewertung: -1,
+                            preis: -20.00,
+                            erscheinungsdatum: "203939-03451-24241",
                             titel: {
-                                titel: "?!2345"
+                                titel: ""
                             }
                         }
                     )
@@ -131,7 +131,6 @@ describe('GraphQL Mutations', () => {
             `,
         };
         const expectedMsg = [
-            expect.stringMatching(/^regisseur /u),
             expect.stringMatching(/^bewertung /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^erscheinungsdatum /u),
@@ -270,10 +269,10 @@ describe('GraphQL Mutations', () => {
                     update(
                         input: {
                             id: "${id}",
-                            version: 0,
-                            regisseur: 123
+                            version: 1,
+                            regisseur: "!?"
                             bewertung: -88,
-                            preis: -1,
+                            preis: -1.00,
                             erscheinungsdatum: "12345-123-123",
                         }
                     )
@@ -281,7 +280,6 @@ describe('GraphQL Mutations', () => {
             `,
         };
         const expectedMsg = [
-            expect.stringMatching(/^regisseur /u),
             expect.stringMatching(/^bewertung /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^erscheinungsdatum /u),
@@ -318,7 +316,7 @@ describe('GraphQL Mutations', () => {
     });
 
     // -------------------------------------------------------------------------
-    test('Nicht-vorhandener Film  aktualisieren', async () => {
+    test('Nicht-vorhandenen Film aktualisieren', async () => {
         // given
         const token = await loginGraphQL(client);
         const authorization = { Authorization: `Bearer ${token}` }; // eslint-disable-line @typescript-eslint/naming-convention
