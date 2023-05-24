@@ -32,7 +32,7 @@
     "copy-resources": "node scripts/copy-resources",
     "depcheck": "depcheck",
     "eslint": "eslint --ext .ts ./src ./__tests__",
-    "eslint:fix":"eslint --fix",
+    "eslint:fix": "eslint --fix",
     "invoke-webrequest": "pwsh -Command Invoke-WebRequest https://localhost:3000/00000000-0000-0000-0000-000000000001 -SslProtocol Tls13 -SkipCertificateCheck",
     "leasot": "leasot --exit-nicely src/**/*.ts",
     "prepack": "npm run clean && npm run copy-resources && npm run tsc",
@@ -178,7 +178,7 @@
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.2.0",
     "typedoc": "0.24.0-beta.6",
-    "typescript": "5.0.4",
+    "typescript": "5.1.1-rc",
     "weak-napi": "2.0.2"
   }
 }
