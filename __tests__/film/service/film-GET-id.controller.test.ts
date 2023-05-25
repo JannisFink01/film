@@ -24,15 +24,15 @@ import {
     port,
     shutdownServer,
     startServer,
-} from '../testserver.js';
-import { type FilmModel } from '../../src/film/rest/film-get.controller.js';
+} from '../../testserver.js';
+import { type FilmModel } from '../../../src/film/rest/film-get.controller.js';
 import { HttpStatus } from '@nestjs/common';
 
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
 // -----------------------------------------------------------------------------
 const idVorhanden = '1';
-const idNichtVorhanden = '99435345439999';
+const idNichtVorhanden = '999999';
 const idVorhandenETag = '1';
 
 // -----------------------------------------------------------------------------

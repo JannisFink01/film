@@ -23,10 +23,10 @@ import {
     port,
     shutdownServer,
     startServer,
-} from '../testserver.js';
-import { type FilmDtoOhneRef } from '../../src/film/rest/filmDTO.js';
+} from '../../testserver.js';
+import { type FilmDtoOhneRef } from '../../../src/film/rest/filmDTO.js';
 import { HttpStatus } from '@nestjs/common';
-import { loginRest } from '../login.js';
+import { loginRest } from '../../login.js';
 
 // -----------------------------------------------------------------------------
 // T e s t d a t e n

@@ -25,8 +25,8 @@ import {
     port,
     shutdownServer,
     startServer,
-} from '../testserver.js';
-import { type FilmDTO } from '../../src/film/graphql/film-query.resolver.js';
+} from '../../testserver.js';
+import { type FilmDTO } from '../../../src/film/graphql/film-query.resolver.js';
 import { HttpStatus } from '@nestjs/common';
 
 /* eslint-disable jest/no-export */

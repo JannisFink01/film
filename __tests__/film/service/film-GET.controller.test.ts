@@ -24,8 +24,8 @@ import {
     port,
     shutdownServer,
     startServer,
-} from '../testserver.js';
-import { type FilmeModel } from '../../src/film/rest/film-get.controller.js';
+} from '../../testserver.js';
+import { type FilmeModel } from '../../../src/film/rest/film-get.controller.js';
 import { HttpStatus } from '@nestjs/common';
 
 // -----------------------------------------------------------------------------

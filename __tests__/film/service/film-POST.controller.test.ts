@@ -23,11 +23,11 @@ import {
     port,
     shutdownServer,
     startServer,
-} from '../testserver.js';
-import { type FilmDTO } from '../../src/film/rest/filmDTO.js';
-import { FilmReadService } from '../../src/film/service/film-read.service.js';
+} from '../../testserver.js';
+import { type FilmDTO } from '../../../src/film/rest/filmDTO.js';
+import { FilmReadService } from '../../../src/film/service/film-read.service.js';
 import { HttpStatus } from '@nestjs/common';
-import { loginRest } from '../login.js';
+import { loginRest } from '../../login.js';
 
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
@@ -46,7 +46,7 @@ const neuerFilm: FilmDTO = {
         },
     ],
 };
-const neuerFilmInvalid: Record<string, unknown> = {
+const neuerFilmInvalid: FilmDTO = {
     regisseur: '?!',
     bewertung: -1,
     preis: -99.99,
@@ -129,7 +129,7 @@ describe('POST /rest', () => {
             expect.stringMatching(/^bewertung /u),
             expect.stringMatching(/^preis /u),
             expect.stringMatching(/^erscheinungsdatum /u),
-            expect.stringMatching(/^schauspieler.schauspieler /u),
+            expect.stringMatching(/^titel/u),
         ];
 
         // when

@@ -28,10 +28,10 @@ import {
     port,
     shutdownServer,
     startServer,
-} from '../testserver.js';
-import { FilmReadService } from '../../src/film/service/film-read.service.js';
+} from '../../testserver.js';
+import { FilmReadService } from '../../../src/film/service/film-read.service.js';
 import { HttpStatus } from '@nestjs/common';
-import { loginGraphQL } from '../login.js';
+import { loginGraphQL } from '../../login.js';
 
 // -----------------------------------------------------------------------------
 // T e s t d a t e n
@@ -79,7 +79,7 @@ describe('GraphQL Mutations', () => {
                                 titel: "Titelcreatemutation"
                             },
                             schauspieler: [{
-                                name: "An Fink"               
+                                name: "An Fink"
                             }]
                         }
                     )
