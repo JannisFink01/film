@@ -19,6 +19,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "test:ORIG": "jest",
+    "test:coverage": "npm t -- --coverage",
     "pretest": "npm run copy-resources",
     "test": "set LOG_DEFAULT=true&& set START_DB_SERVER=false&& jest --runInBand",
     "test:istanbul": "npm t -- --coverage",
