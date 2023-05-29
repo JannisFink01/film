@@ -13,10 +13,10 @@ jobs:
       uses: actions/checkout@v2  
 
     - name: Install Dependencies
-      run: npm install 
+      run: npm install --force
 
     - name: Build
-      run: npm run start:dev --force
+      run: npm run start:dev
 
     - name: Run Tests
       run: npm run test 
