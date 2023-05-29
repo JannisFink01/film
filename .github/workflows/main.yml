@@ -25,3 +25,22 @@ jobs:
       run: |
         sudo apt-get update --yes
         sudo apt-get upgrade --yes
+
+    - name: run tests
+      run: npm run test
+
+    - name: eslint
+      run: npm run eslint
+
+    - name: Security audit
+      run: npm run audit --omit=dev
+
+    - name: AsciiDoctor
+      run: npm run asciidoctor
+
+    - name: reveal.js
+      run: npm run revealjs
+
+    - name: Typedoc
+      run: npm run typedoc
+      
