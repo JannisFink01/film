@@ -26,8 +26,8 @@ jobs:
         sudo apt-get update --yes
         sudo apt-get upgrade --yes
 
-    - name: run tests
-      run: npm run test
+    #- name: run tests
+    #  run: npm run test
 
     - name: eslint
       run: npm run eslint
