@@ -1,25 +1,53 @@
-name: Film
+name: Build and Test
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: windows-latest  
+    runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2  
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Install Dependencies
-      run: npm install --force
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-    - name: Build
-      run: npm run start:dev
+      - name: Install dependencies
+        run: npm ci --no-progress
 
-    - name: Run Tests
-      run: npm run test 
-      
-    - name: Deploy
-      run: npm run deploy 
+      - name: Compile
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Lint
+        run: npx eslint
+
+      - name: Security Audit
+        run: npm audit --omit=dev
+
+      - name: Generate Documentation
+        run: npm run generate-docs
+
+      - name: Build Docker Image
+        run: |
+          docker build -t juergenzimmermann/film:2023.1.0 .
+
+      - name: Publish Docker Image
+        run: |
+          echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+          docker push juergenzimmermann/film:2023.1.0
+
+      - name: Deploy to Kubernetes
+        run: |
+          echo "TODO: Deploy to Kubernetes with Ansible or other deployment tool"
