@@ -80,7 +80,7 @@ pipeline {
 
                 // https://www.jenkins.io/doc/pipeline/steps/git
                 // "named arguments" statt Funktionsaufruf mit Klammern
-                git url: 'https://github.com/juergenzimmermann/buch', branch: 'main', poll: true
+                git url: 'https://github.com/Vvalentin/film.git', branch: 'main', poll: true
             }
         }
 
@@ -123,7 +123,7 @@ pipeline {
                 }
 
                 // /var/jenkins_home ist das Homedirectory vom User "jenkins"
-                // /var/jenkins_home/workspace/buch (siehe "pwd" oben)
+                // /var/jenkins_home/workspace/film (siehe "pwd" oben)
                 sh 'cat package.json'
 
                 // npm help install
@@ -208,14 +208,14 @@ pipeline {
 
                 success {
                     script {
-                        if (fileExists("${env.WORKSPACE}/buch.zip")) {
-                            sh 'rm buch.zip'
+                        if (fileExists("${env.WORKSPACE}/film.zip")) {
+                            sh 'rm film.zip'
                         }
                     }
                     // https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/#zip-create-zip-file
-                    zip zipFile: 'buch.zip', archive: false, dir: 'dist'
-                    // jobs/buch/builds/.../archive/buch.zip
-                    archiveArtifacts 'buch.zip'
+                    zip zipFile: 'film.zip', archive: false, dir: 'dist'
+                    // jobs/film/builds/.../archive/film.zip
+                    archiveArtifacts 'film.zip'
                 }
             }
         }
@@ -224,7 +224,7 @@ pipeline {
             steps {
                 // Docker-Installation und laufender Docker-Daemon erforderlich
                 echo 'TODO: dockerd starten, dann Docker-Image bauen'
-                // sh 'docker buildx build --tag juergenzimmermann/buch:2023.1.0 .'
+                // sh 'docker buildx build --tag juergenzimmermann/film:2023.1.0 .'
             }
         }
 
