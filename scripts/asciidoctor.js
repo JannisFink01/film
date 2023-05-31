@@ -62,5 +62,3 @@ console.log(
 // );
 // const htmlFile = join('extras', 'doc', 'entwicklerhandfilm.html');
 // fs.writeFileSync(htmlFile, htmlString);
-
-// console.log(`HTML-Datei ${join(__dirname, '..', htmlFile)}`);
