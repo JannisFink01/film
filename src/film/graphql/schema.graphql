@@ -65,4 +65,6 @@ input FilmUpdateInput {
   bewertung: Int
   preis: Float
   erscheinungsdatum: String
+  titel: TitelInput
+  schauspieler: SchauspielerInput
 }

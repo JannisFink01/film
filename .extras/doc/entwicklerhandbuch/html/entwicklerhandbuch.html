@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="author" content="SWE Gruppe">
+<title>Entwicklerhandbuch</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<link rel="stylesheet" href="./asciidoctor.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Entwicklerhandbuch</h1>
+<div class="details">
+<span id="author" class="author">SWE Gruppe</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_der_applikationsserver">1. Der Applikationsserver</a>
+<ul class="sectlevel2">
+<li><a href="#_der_applikationsserver_im_überblick">1.1. Der Applikationsserver im Überblick</a></li>
+<li><a href="#_die_rest_schnittstelle">1.2. Die REST-Schnittstelle</a></li>
+<li><a href="#_die_graphql_schnittstelle">1.3. Die GraphQL-Schnittstelle</a></li>
+<li><a href="#_die_geschäftslogik">1.4. Die Geschäftslogik</a></li>
+<li><a href="#_klasse_für_entities">1.5. Klasse für Entities</a></li>
+<li><a href="#_er_diagramm">1.6. ER-Diagramm</a></li>
+</ul>
+</li>
+<li><a href="#_programmierrichtlinien_für_typescript_und_javascript">2. Programmierrichtlinien für TypeScript und JavaScript</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_der_applikationsserver"><a class="anchor" href="#_der_applikationsserver"></a><a class="link" href="#_der_applikationsserver">1. Der Applikationsserver</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_der_applikationsserver_im_überblick"><a class="anchor" href="#_der_applikationsserver_im_überblick"></a><a class="link" href="#_der_applikationsserver_im_überblick">1.1. Der Applikationsserver im Überblick</a></h3>
+<div class="paragraph">
+<p>Der Applikationsserver ist die Kernkomponente der Anwendung. Er stellt die zentrale Schnittstelle für die Verarbeitung von Anfragen bereit und ist für die Steuerung des Datenflusses zwischen den einzelnen Komponenten verantwortlich.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_die_rest_schnittstelle"><a class="anchor" href="#_die_rest_schnittstelle"></a><a class="link" href="#_die_rest_schnittstelle">1.2. Die REST-Schnittstelle</a></h3>
+<div class="paragraph">
+<p>Die REST-Schnittstelle dient zur Bereitstellung von Lese- und Schreibzugriffen auf die Ressourcen der Anwendung. Dabei werden die Anfragen über HTTP-Protokoll an den Applikationsserver gesendet.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqVVE2P0zAQvedXjLoHuoIWcY2iaPnQLntAWhY4IQ7Bnm0NiZ3aTqFi-9-ZTOLGDQmIXGy_efPhmRc_gTuLe4U_QDZWbCF7WfpcJonSHu1DIZDsplIOs495ktSF-F5sEK40Ov_NPRemqoyGXwmAKAvnYHH12mhvTVmiXUDhYDgSZ6skRggIZUWJSeR9g57daA182k4Q73HHRFoDkbaTRNcT3UB0E8S7whYVU3kXyHyYoL9v0B6YzrtA58ME_ZPD27alAmtvbFfSCAshRnAIdhzajz9rixR26DvdvaGRRGdXG-24hLCH9WeKL1F_WefxXKLAD6qsOOopk_bKH-Dimj82hRTXLTfLOkaeJ2xiMM7Tq2faOFR9TKKkDu1ekfLG2e6xkB96W5aB6K4AlHsUgJrj4eINf32U1r-bzaqpV485A8koAUktUudZivYUaXt5GTCa1k1TWOnOoHiAnaErA-AptCInrHAHLajjWr463Mplpz_ClUxBN9VXtM-glTlBFndpaBaBb6kPyHH3tCijU3DeKr1hB8cOLj3N_TI9_cMBytrbvjMSS3iERkukMlByI2dqXHaCJ2zXrunQ0Jkq_6sUnKvlOMjqfDhmtcph8WLxhzDSIJ85z_W5-udJgzrnGf1fNk8Z63_EaOp1J0VuwD9Z3VNzosX3nv6v_s6LixteCas2Wz_9VLQDoZHwM4VVTS9Dha1SXfIbbwcG4g==" alt="&quot;FilmGetController&quot; für Lesezugriffe an der REST-Schnittstelle">
+</div>
+<div class="title">Figure 1. "FilmGetController" für Lesezugriffe an der REST-Schnittstelle</div>
+</div>
+<div class="paragraph">
+<p>Der "FilmGetController" dient zur Abfrage von Filminformationen über die REST-Schnittstelle. Er verarbeitet eingehende Anfragen und gibt die entsprechenden Daten zurück.</p>
+</div>
+<div class="paragraph">
+<p>Der "FilmWriteController" ist verantwortlich für Schreibzugriffe auf die REST-Schnittstelle. Er verarbeitet die Anfragen und gibt die entsprechende Antwort zurück. Diese Komponente arbeitet eng mit der Geschäftslogik zusammen und aktualisiert die Datenbank entsprechend den Anforderungen der Anfrage.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_die_graphql_schnittstelle"><a class="anchor" href="#_die_graphql_schnittstelle"></a><a class="link" href="#_die_graphql_schnittstelle">1.3. Die GraphQL-Schnittstelle</a></h3>
+<div class="paragraph">
+<p>Die GraphQL-Schnittstelle bietet eine alternative Möglichkeit für den Zugriff auf die Ressourcen der Anwendung. Sie ermöglicht es, komplexe Abfragen auf mehrere Ressourcen in einer Anfrage zu kombinieren.</p>
+</div>
+<div class="paragraph">
+<div class="title">FilmQueryResolver für Lesezugriffe an der GraphQL-Schnittstelle</div>
+<p>Der FilmQueryResolver verarbeitet Lesezugriffe auf der GraphQL-Schnittstelle und gibt die entsprechenden Daten zurück. Er nutzt das GraphQL-Query-Format, um die Abfrageparameter zu interpretieren und die passenden Ergebnisse aus der Datenbank zu ermitteln.</p>
+</div>
+<div class="paragraph">
+<p>Der "FilmMutationResolver" dient als Schnittstelle für Schreibzugriffe auf die GraphQL-Schnittstelle. Er empfängt GraphQL-Mutationen, validiert und verarbeitet sie, und leitet sie an den "FilmWriteService" weiter, der die Geschäftslogik für Schreibzugriffe implementiert. Der "FilmMutationResolver" gibt dann eine Antwort an den Client zurück, die den Erfolg oder Misserfolg der Anfrage widerspiegelt.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_die_geschäftslogik"><a class="anchor" href="#_die_geschäftslogik"></a><a class="link" href="#_die_geschäftslogik">1.4. Die Geschäftslogik</a></h3>
+<div class="paragraph">
+<p>Die Geschäftslogik ist die Ebene, auf der die eigentliche Verarbeitung der Daten stattfindet. Sie ist für die Umsetzung der Geschäftsregeln und die Transformation der Daten in das Datenmodell verantwortlich.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNqFVcFy2jAQvfsrdtJDYEqgaU-ljFuShoQ0JdSQ6aSdHoS0xkpkyZVkGE-bP-utP9a1SWJIGMoJrXaf3tt9kvfh2GSFlfPEQ-O4Ca9fHb6FA8gsOtQeznO0c9TwTaYp2pRp3YIzwxPHk1whfGJWOZsnGOwH-zBNpKNKM7csBfobW0RwJvZLZrELhcmBMw0WhXTeylnuEaQHpkXHWEiNkHFBMBTKtUALPkHwdKoDE1eL09EVnKJGyxSM85mSHC4kR-0QGJ1cRlyCAmYlTFkwKBlM7hnAwBAu89KQCJS0b2GB1tEa3jwccY_XAmMJo8F8SduCycqyJnEtQDFfV7a3Kq8FCpC6Ak5MRmoSAiR9S6kUzBByh3GuWoRAufB1OD27vJpCf3QNX_tR1B9Nr99Rrk8M7eICV0gyzZQkYNJkmfYFUSeAzyfR8RlV9I-GF8PpNfGHwXA6OplMYHAZQR_G_Wg6PL666EcwvorGl5OTNsAES1I0vl29javpUAMFeiaVW2m-pnE6YqYEJGyBNFaOckG8GHCy1P9nRhhMGT2vFFJu3UIiNoxBG98CRwR7ifeZ63Y6y-WyPdd529h5R61AXCdsB4Q0triQuASRW55Ar698KIJAahpVzDjSvkmlw940DIKM8Vs2R_ig0fkb1-EmTckDvwIArphzsPdhqG-QezZTuFdaq15STiIFrkWAS8tp464G9kWGxqZriBFmxklvbFEyuHvO4XnJA4m6dI1KHdwkVMe30IqlWh3wEKAbLsk_Zejh1AHl0JKq6jSHdkHdhhcfq99G_hd6IIqjXCq6sMETnAiZmNzX9nrkCu2tURCGtFrrcKNJkRUmwEvSWGhOXLU4KoaiIUUXdJ7O0Da7j1Ms0eF39UxQIopwS3XD5Ty5tZIcIFG_79IMuLGiV95MPW-VVzl8Avn9xwrobqXkqQZzcBDC3uHehugu_Fxvwc66ejpdeDZdukCZ2X5wO8_a4aYJdyet2WNH7r307Rm0X3mh2l0XDO3vZDiB-gelbPhwR96jrai1lV0xzch5KZaDdUEQG1M-qg3ehPO_f558coJ_gsE14g==" alt="&quot;FilmReadService&quot; von der Geschäftslogik">
+</div>
+<div class="title">Figure 2. "FilmReadService" von der Geschäftslogik</div>
+</div>
+<div class="paragraph">
+<p>FilmReadService ist eine Komponente der Geschäftslogik, die für die Lesezugriffe auf Filmobjekte zuständig ist. Diese Komponente bietet eine Abstraktionsebene für den Zugriff auf die Datenbank und enthält die Logik für die Zusammenstellung von Daten, die für den Client relevant sind. Die Hauptaufgabe von FilmReadService besteht darin, die Daten aus der Datenbank zu laden und in einem für den Client lesbaren Format bereitzustellen. Außerdem implementiert diese Komponente auch verschiedene Funktionen zur Filterung und Sortierung von Filmdaten.</p>
+</div>
+<div class="paragraph">
+<p>Der "FilmWriteService" ist ein Teil der Geschäftslogik und ist für das Schreiben von Daten in die Datenbank zuständig. Dieser Service nimmt Anfragen vom "FilmWriteController" entgegen und validiert die Daten, bevor sie in die Datenbank geschrieben werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_klasse_für_entities"><a class="anchor" href="#_klasse_für_entities"></a><a class="link" href="#_klasse_für_entities">1.5. Klasse für Entities</a></h3>
+<div class="paragraph">
+<p>Die Klasse für Entities definiert das Datenmodell, das in der Anwendung verwendet wird. Sie enthält die Eigenschaften und Methoden, die für die Verarbeitung der Daten notwendig sind.</p>
+</div>
+<div class="imageblock kroki">
+<div class="content">
+<img src="https://kroki.io/plantuml/svg/eNq9VMtOwzAQvOcrVj1BJfoBUVWQChyQEEiED3CTJbVqO5HtgALqv7N52HESVbn10NQ7nlmvPWtHJUtPLEewdYmFlvAXAaSCGQOrhydlua1XwAx0w2BuX4hKqnauG9LckWfYR5BynQoMBO-aS6brQDdCnHwEzrO8KUyKV6a6qnzk1B6YK18KroLFh9BpB2QublImBWVvtT5yUg_MlXuNzOIj_cITm4D-7Cb4PN1nmc3TTUGXboq7dOcocrZ_cSE32JpL1kd-pWfCYbvtZnY7GvbdQOOmRQD6Dri5hbG1BNAuskKJGngWg6rkAfVE4hmUEkUMSfN3iaMx58ZgpWMwVnOVXyKa9MgqU3IUSNyPILqk-EZteKGWqjzgD2pbqXyJWGrkZolEa6ZH5IryGTKokjE0HvX0SQuMhb9Y5TakTy0O6exkKya44VS715wHj9tDv6LJ3ryghtCka5SimMSlNkoLZamQhF7E-2nV7b3YbHbDg9gi67s7WK1X_ZHG0L1T9KG8rrdHxNG-Hb95RkgwatzmsraXGWVJd1RiszsT_QP07OTz" alt="Entity">
+</div>
+<div class="title">Figure 3. Entity</div>
+</div>
+<div class="paragraph">
+<p>Die Entity repräsentiert eine Tabelle oder Sicht in der Datenbank und bildet das Datenmodell für die Anwendung ab. Sie besteht aus Attributen, die die Eigenschaften der Entität beschreiben, sowie Beziehungen zu anderen Entitäten. Die Entitäten werden von den Repository-Klassen abgerufen und an die Anwendung zurückgegeben. Änderungen an den Entitäten werden ebenfalls durch die Repository-Klassen vorgenommen und in der Datenbank gespeichert.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_er_diagramm"><a class="anchor" href="#_er_diagramm"></a><a class="link" href="#_er_diagramm">1.6. ER-Diagramm</a></h3>
+<div class="paragraph">
+<p>Das ER-Diagramm gibt einen Überblick über die Datenbankstruktur der Anwendung. Es zeigt die Beziehungen zwischen den einzelnen Entitäten und gibt Auskunft über die Kardinalität der Beziehungen.</p>
+</div>
+<div class="paragraph">
+<p>Ein ER-Diagramm ist ein visuelles Modell, das die Beziehungen zwischen Entitäten in einer Datenbank darstellt. Es besteht aus Entitäten, Attributen und Beziehungen, die die Struktur der Datenbank beschreiben. Die Entitäten werden durch Rechtecke dargestellt, während Attribute durch Ovale und Beziehungen durch Linien dargestellt werden. ER-Diagramme werden verwendet, um Datenbanken zu entwerfen und zu dokumentieren, sowie um Datenintegrität und -konsistenz sicherzustellen.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_programmierrichtlinien_für_typescript_und_javascript"><a class="anchor" href="#_programmierrichtlinien_für_typescript_und_javascript"></a><a class="link" href="#_programmierrichtlinien_für_typescript_und_javascript">2. Programmierrichtlinien für TypeScript und JavaScript</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Für die Programmierung mit <strong>TypeScript</strong> und <strong>JavaScript</strong> sind folgende
+Styleguides empfehlenswert:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Microsoft
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines" class="bare">https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Angular
+</td>
+<td class="hdlist2">
+<p><a href="https://angular.io/docs/ts/latest/guide/style-guide.html" class="bare">https://angular.io/docs/ts/latest/guide/style-guide.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Google
+</td>
+<td class="hdlist2">
+<p><a href="https://google.github.io/styleguide/tsguide.html" class="bare">https://google.github.io/styleguide/tsguide.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+React
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/airbnb/javascript/tree/master/react" class="bare">https://github.com/airbnb/javascript/tree/master/react</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-05-31 18:42:53 +0200
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+</body>
+</html>

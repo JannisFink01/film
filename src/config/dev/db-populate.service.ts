@@ -140,7 +140,7 @@ export class DbPopulateService implements OnApplicationBootstrap {
             "INTO TABLE %TABELLE% FIELDS TERMINATED BY ';' " +
             "ENCLOSED BY '\"' LINES TERMINATED BY '\\n' IGNORE 1 ROWS;";
         for (const tabelle of this.#tabellen) {
-            await dataSource.query(copyStmt.replace(/%TABELLE%/gu, tabelle));
+            await dataSource.query(copyStmt.replaceAll(/%TABELLE%/gu, tabelle));
         }
         await dataSource.destroy();
     }
