@@ -66,4 +66,8 @@ input FilmUpdateInput {
   preis: Float
   erscheinungsdatum: String
   titel: TitelInput
+<<<<<<< HEAD
+=======
+  schauspieler: SchauspielerInput
+>>>>>>> 7b93dfe7b4536b6347a0ea370104eeb67a8c241d
 }

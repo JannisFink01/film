@@ -107,7 +107,11 @@ mutation {
   update(
     input: {
       id: "40",
+<<<<<<< HEAD
       version: 1,
+=======
+      version: 0,
+>>>>>>> 7b93dfe7b4536b6347a0ea370104eeb67a8c241d
       regisseur: "Cristopher Nolan",
       bewertung: 5,
       preis: 99.00,
