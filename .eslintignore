@@ -10,6 +10,7 @@ node-ts/*
 scripts/*
 temp/*
 node_modules/*
+db-populate.service.ts
 
 # default:
 #node_modules/*
