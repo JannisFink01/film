@@ -34,7 +34,7 @@ X-REQUEST-TYPE: GraphQL
   }
 }
 
-### Suche regisseur, version und titel von einem Fikm mit vorhandener Film-ID
+### Suche regisseur, version und titel von einem Film mit vorhandener Film-ID
 POST {{graphQlUrl}}
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
